@@ -2,9 +2,8 @@ import Link from "next/link";
 import MegaMenu from "@/components/MegaMenu";
 import design from "../../../app/assets/images/design2.png";
 import develop from "../../../app/assets/images/develop2.png";
-import marketing from "../../../app/assets/images/marketing.png";
+import marketing from "../../../app/assets/images/develop2.png";
 export const links = [
-  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   {
     name: "Services",

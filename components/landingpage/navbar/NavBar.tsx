@@ -1,16 +1,7 @@
 "use client";
 
-import React from "react";
-import QuoteButton from "./QuoteButton";
-import Links from "./Links";
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import RippleButton from "@/components/RippleButton";
+import MobileMenu from "./MobileMenu";
 
 function NavBar() {
   return (
@@ -20,28 +11,16 @@ function NavBar() {
         Vita<span className="">Nova</span>
       </h1>
 
-      {/* Desktop Nav */}
-      <nav className="hidden md:flex gap-8 text-lg">
-        <Links />
-        <QuoteButton />
-      </nav>
+      {/* CTA always visible */}
+      <div className="flex items-center gap-4">
+        <RippleButton
+          rippleColor="rgba(168, 85, 247, 0.4)"
+          className="bg-white text-purple-800 font-bold py-2 px-4 rounded-xl hover:bg-purple-200 transition-all">
+          Get in Touch
+        </RippleButton>
 
-      {/* Mobile Nav Trigger */}
-      <div className="md:hidden">
-        <Sheet>
-          <SheetTitle></SheetTitle>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Menu className="size-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-[#0A0826] text-white">
-            <nav className="flex flex-col gap-6 mt-8 text-lg">
-              <Links />
-              <QuoteButton />
-            </nav>
-          </SheetContent>
-        </Sheet>
+        {/* Sheet Trigger always visible */}
+        <MobileMenu />
       </div>
     </header>
   );
