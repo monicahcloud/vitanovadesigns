@@ -19,7 +19,7 @@ function NavBar() {
         <RippleButton
           rippleColor="rgba(168, 85, 247, 0.4)"
           className="bg-white text-purple-800 font-bold py-2 px-4 rounded-xl hover:bg-purple-200 transition-all">
-          Book A Consultation
+          Book A Call
         </RippleButton>
 
         {/* Sheet Trigger always visible */}

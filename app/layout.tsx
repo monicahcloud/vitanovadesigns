@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/landingpage/navbar/NavBar";
 import Footer from "@/components/footer/Footer";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Toaster } from "@/components/ui/sonner";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jbMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -29,11 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${jakarta.variable} ${jbMono.variable} antialiased`}>
         <Navbar /> {/* 👈 Navbar added here */}
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

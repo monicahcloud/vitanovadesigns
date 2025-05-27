@@ -10,7 +10,7 @@
 @custom-variant dark (&:is(.dark *));
 body {
   @apply bg-slate-900 text-white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 @theme inline {
   --color-background: var(--background);
@@ -53,6 +53,8 @@ body {
 }
 
 :root {
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);

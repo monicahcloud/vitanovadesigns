@@ -1,9 +1,8 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import Logo from "../landingpage/navbar/Logo";
 
 export default function ContactLeftColumn() {
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-900 via-purple-700 to-purple-500 p-6 md:p-10 text-white flex flex-col justify-between gap-10">
+    <div className="relative w-full h-full overflow-hidden  p-6 md:p-10 text-white flex flex-col justify-between gap-10">
       {/* Floating SVG Blob Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <svg
@@ -20,8 +19,8 @@ export default function ContactLeftColumn() {
 
       {/* Headline + Subtext */}
       <div className="z-10 space-y-4 max-w-md">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white">
-          Let&apos;s Connect
+        <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight text-white">
+          Let&apos;s Grow Your Brand Together.
         </h1>
         <p className="text-white/80 text-base md:text-lg">
           Whether you have a question, opportunity, or just want to say hi —
@@ -29,14 +28,14 @@ export default function ContactLeftColumn() {
         </p>
       </div>
 
-      <div className="z-10 flex justify-center items-center">
+      {/* <div className="z-10 flex justify-center items-center">
         <div className="logo-wrapper">
           <div className="logo-ring" />
           <div className="logo-inner">
             <Logo />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Contact Info */}
       <div className="z-10  text-white/90 text-md sm:text-base">

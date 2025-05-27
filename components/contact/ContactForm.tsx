@@ -6,6 +6,8 @@ import ContactInput from "./ContactInput";
 import ContactTextArea from "./ContactTextArea";
 import RippleButton from "../RippleButton";
 import ContactHeader from "./ContactHeader";
+import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -22,10 +24,58 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Submitted:", formData);
-    // Add API logic here
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast(
+          <div>
+            <p className="font-semibold text-green-800">Success!</p>
+            <p className="text-sm text-muted-foreground">
+              Your message has been sent.
+            </p>
+          </div>
+        );
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          budget: "",
+          message: "",
+        });
+      } else {
+        toast(
+          <div>
+            <p className="font-semibold text-red-600">Error</p>
+            <p className="text-sm text-muted-foreground">
+              {data.error || "Failed to send your message."}
+            </p>
+          </div>
+        );
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      toast(
+        <div>
+          <p className="font-semibold text-red-600">Unexpected Error</p>
+          <p className="text-sm text-muted-foreground">
+            Something went wrong. Please try again.
+          </p>
+        </div>
+      );
+    }
   };
 
   return (
@@ -38,7 +88,7 @@ const ContactForm = () => {
       <ContactHeader />
       {/* Name + Email */}
       <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex-1">
+        <div className="flex-1 ">
           <ContactInput
             label="Name"
             name="name"
@@ -87,11 +137,11 @@ const ContactForm = () => {
         onChange={handleChange}
       />
       <div className="flex ">
-        <RippleButton
+        <Button
           type="submit"
           className="w-full  bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 text-lg rounded-lg transition-all duration-300 shadow-md">
           Send Message
-        </RippleButton>
+        </Button>
       </div>
 
       <div className="text-center pt-6 flex justify-between items-center">

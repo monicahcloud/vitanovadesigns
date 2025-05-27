@@ -41,39 +41,57 @@ const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
         initial="hidden"
         animate="show"
         variants={containerVariants}
-        className="relative w-full bg-white shadow-2xl border-t-4 border-purple-500 z-10 px-8 py-20 grid grid-cols-4 gap-6 mt-20">
-        {/* Title over the grid */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-8 py-4 rounded-3xl shadow-xl">
-          <h1 className="text-purple-900 text-5xl md:text-7xl font-extrabold text-center">
+        className="relative w-full bg-white shadow-2xl border-t-4 border-purple-500 z-10 px-4 sm:px-6 md:px-8 py-16 sm:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+        {/* Title */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-xl z-20">
+          <h1 className="text-purple-900 text-3xl sm:text-5xl md:text-6xl font-extrabold text-center">
             {title}
           </h1>
         </div>
+
         {/* Promo CTA Card */}
         <motion.div variants={itemVariants}>
-          <Card className="col-span-1 bg-gradient-to-br from-purple-700 to-purple-900 text-white flex flex-col justify-between items-center h-full min-h-[220px] rounded-3xl p-6 shadow-lg relative overflow-hidden">
+          <Card className="bg-gradient-to-br from-purple-700 via-purple-800 to-indigo-900 text-white flex flex-col justify-between items-center min-h-[260px] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-purple-400/20">
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
               className="flex flex-col items-center text-center gap-4 cursor-pointer">
-              <div className="text-4xl font-extrabold">Let&apos;s Talk!</div>
-              <p className="text-lg opacity-90">
-                Got a project in mind? <br /> Let&apos;s make it happen.
+              {/* Headline */}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight bg-gradient-to-r from-white via-purple-300 to-white text-transparent bg-clip-text drop-shadow-sm">
+                Your Project, <br /> Your Price
+              </h2>
+
+              {/* Subtext */}
+              <p className="text-sm sm:text-base md:text-lg text-purple-100 italic px-2 max-w-md">
+                Flexible solutions, powerful results. <br />
+                Let’s shape your vision — on your terms.
               </p>
+
+              {/* CTA */}
               <RippleButton
                 rippleColor="rgba(168, 85, 247, 0.4)"
-                className="mt-4 bg-white text-purple-800 font-bold py-2 px-4 rounded-xl hover:bg-purple-200 transition-all">
-                Get in Touch
+                className="relative mt-3 bg-white text-purple-800 font-bold py-2 px-4 sm:px-6 rounded-2xl hover:bg-purple-200 transition-all shadow-md text-sm md:text-base">
+                <span className="relative z-10">
+                  Book a free 15-min strategy call
+                </span>
+                <span className="absolute inset-0 rounded-2xl animate-pulse bg-purple-300 opacity-10" />
               </RippleButton>
             </motion.div>
 
+            {/* Decorative Icon */}
             <motion.div
-              animate={{ rotate: [0, 20, -20, 0] }}
-              transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-              className="absolute bottom-5 right-5 opacity-20 text-9xl font-extrabold select-none pointer-events-none">
-              🌀
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 16,
+                ease: "easeInOut",
+              }}
+              className="absolute bottom-4 right-4 opacity-20 text-[6rem] sm:text-[9rem] pointer-events-none select-none">
+              ✨
             </motion.div>
           </Card>
         </motion.div>
+
         {/* SubMenu Cards */}
         {subMenu.map((item) => (
           <motion.div
@@ -87,21 +105,21 @@ const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
             }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             style={{ transformStyle: "preserve-3d", perspective: 1000 }}
-            className="col-span-1 rounded-3xl bg-white overflow-hidden cursor-pointer">
+            className="rounded-3xl bg-white overflow-hidden cursor-pointer">
             <Link href={item.href} className="block h-full">
-              <div className="flex flex-col gap-4 p-6 relative z-10 h-full">
+              <div className="flex flex-col gap-4 p-5 sm:p-6 h-full relative z-10">
                 <Image
                   src={item.icon}
                   alt={item.name}
-                  width={100}
-                  height={50}
+                  width={80}
+                  height={40}
                   className="object-cover rounded"
                 />
-                <div className="text-3xl font-bold text-gray-900">
+                <div className="text-xl sm:text-2xl font-bold text-gray-900">
                   {item.name}
                 </div>
                 <hr />
-                <ul className="list-none pl-0 text-lg text-purple-900 font-semibold space-y-1">
+                <ul className="list-none pl-0 text-sm sm:text-base text-purple-900 font-semibold space-y-1">
                   {item.description.map((desc, index) => (
                     <li key={index}>{desc}</li>
                   ))}
