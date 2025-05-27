@@ -9,6 +9,8 @@ import img2 from "../../../app/assets/images/gamehub.png";
 import img6 from "../../../app/assets/images/resume.png";
 import img3 from "../../../app/assets/images/aseamerch.png";
 import img4 from "../../../app/assets/images/asea.png";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const projectImages = [img1, img3, img4, img5, img6, img2];
 
@@ -53,9 +55,11 @@ const Hero = () => {
           <br />
           Custom Websites, Branding & Digital Experiences.
         </p>
-        <button className="mt-10 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-all">
-          Let&apos;s Build Something Bold
-        </button>
+        <Button
+          asChild
+          className="mt-10 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-all">
+          <Link href="/contact"> Let&apos;s Build Something Bold</Link>
+        </Button>
       </motion.div>
     </main>
   );

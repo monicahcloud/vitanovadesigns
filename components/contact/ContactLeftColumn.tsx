@@ -19,7 +19,7 @@ export default function ContactLeftColumn() {
 
       {/* Headline + Subtext */}
       <div className="z-10 space-y-4 max-w-md">
-        <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight text-white">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
           Let&apos;s Grow Your Brand Together.
         </h1>
         <p className="text-white/80 text-base md:text-lg">
