@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Instagram, Facebook, Linkedin, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
