@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <header className="sticky top-0 z-[50] bg-[#0A0826] w-full shadow-lg px-8 py-8 flex justify-between items-center">
       {/* Logo */}
-      <Link href="/" aria-label="Go to homepage">
+      <Link href="/" aria-label="Go to homepage" className="cursor-pointer">
         <h1 className="text-4xl md:text-6xl font-bold uppercase bg-gradient-to-t from-indigo-900 via-purple-700 to-purple-500 bg-clip-text text-transparent">
           Vita<span className="">Nova</span>
         </h1>
