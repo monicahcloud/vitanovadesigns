@@ -5,14 +5,16 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type RippleButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  rippleColor?: string; // Optional color prop
+  rippleColor?: string;
+  calendlyLink?: string;
 };
 
 const RippleButton: React.FC<RippleButtonProps> = ({
   children,
-  rippleColor = "rgba(255, 255, 255, 0.3)", // Default to white with 30% opacity
+  rippleColor = "rgba(255, 255, 255, 0.3)",
   onClick,
   className,
+  calendlyLink = "https://calendly.com/monicahcloud-vitanovadesigns/30min-1", // Default link
   ...props
 }) => {
   const [ripples, setRipples] = useState<any[]>([]);
@@ -46,6 +48,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
     }, 600);
 
     if (onClick) onClick(event);
+    if (calendlyLink) window.open(calendlyLink, "_blank");
   };
 
   return (

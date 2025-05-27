@@ -1,4 +1,9 @@
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { AlignRight, ChevronDown, X } from "lucide-react";
 import Link from "next/link";
@@ -48,6 +53,7 @@ const TopLevelDropdown = ({
 const MobileMenu = () => {
   return (
     <Sheet>
+      <SheetTitle></SheetTitle>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon">
           <AlignRight className="size-8 text-white" />

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../app/assets/images/hero1.png";
+import logo from "../../../app/assets/images/vitanovalogo.svg";
 
 function Logo() {
   return (
@@ -12,7 +12,7 @@ function Logo() {
       <Image
         src={logo}
         alt="VitaNova Logo"
-        className="w-40 h-auto block"
+        className="w-100 h-auto block"
         style={{ maxWidth: "200px" }}
         priority
       />

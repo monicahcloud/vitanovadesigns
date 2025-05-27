@@ -67,10 +67,10 @@ const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
             </motion.div>
 
             <motion.div
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+              animate={{ rotate: [0, 20, -20, 0] }}
+              transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
               className="absolute bottom-5 right-5 opacity-20 text-9xl font-extrabold select-none pointer-events-none">
-              🚀
+              🌀
             </motion.div>
           </Card>
         </motion.div>
