@@ -197,8 +197,8 @@ export default function AboutPage() {
           Why Vita Nova?
         </h2>
         <blockquote className="text-xl italic text-purple-400 max-w-2xl mx-auto">
-          “Vita Nova” means "New Life" — and that’s what we build into every
-          brand.
+          “Vita Nova” means &quot;New Life&quot; — and that’s what we build into
+          every brand.
         </blockquote>
         <p className="text-lg text-gray-200 max-w-xl mx-auto leading-relaxed">
           Every project we take on is rooted in the belief that your brand

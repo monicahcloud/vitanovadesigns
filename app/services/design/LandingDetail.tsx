@@ -35,7 +35,7 @@ export default function LandingDetail() {
         A great landing page doesn’t just look good — it sells. At VitaNova, we
         create high-converting pages that turn browsers into buyers. With
         crystal-clear messaging, striking visuals, and smart design choices,
-        your visitors won't just scroll — they'll click.
+        your visitors won&apos;t just scroll — they&apos;ll click.
       </motion.p>
 
       {/* 🎯 Feature list with icons and animation */}
