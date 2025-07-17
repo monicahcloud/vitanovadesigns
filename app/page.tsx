@@ -15,40 +15,53 @@ export default function HomePage() {
           <Services
             title="Our Services"
             subMenu={[
+              // {
+              //   name: "Design",
+              //   href: "/services/design",
+              //   description: [
+              //     "UI/UX",
+              //     "Web",
+              //     "Mobile App Design",
+              //     "Landing Page Design",
+              //     "Branding",
+              //   ],
+              //   icon: design,
+              // },
               {
-                name: "Design",
+                name: "Design/Development",
                 href: "/services/design",
                 description: [
-                  "UI/UX",
-                  "Web",
-                  "Mobile App Design",
-                  "Landing Page Design",
-                  "Branding",
-                ],
-                icon: design,
-              },
-              {
-                name: "Development",
-                href: "/services/development",
-                description: [
-                  "Web Development",
-                  "Software Development",
-                  "CMS Development",
-                  "Webflow Development",
-                  "MVP Development",
+                  "User Interface & User Experience Design",
+                  "Website and Mobile Application Design",
+                  "Website Development & Content Management Systems",
+                  "Custom Software & Prototype Development",
+                  "Landing Page Design & Optimization",
                 ],
                 icon: develop,
               },
               {
-                name: "Marketing/UX",
+                name: "Marketing/Branding",
                 href: "/services/marketing",
                 description: [
-                  "Content Marketing",
-                  "Pitch Deck Design",
-                  "SEO",
-                  "Content & CRO",
+                  "Content Marketing Strategy",
+                  "Search Engine Optimization & Conversion Strategy",
+                  "Pitch Decks & Visual Presentations",
+                  "Customer Journey Research & Mapping",
+                  "Brand Messaging & Communication",
                 ],
                 icon: marketing,
+              },
+              {
+                name: "Business Intelligence & Strategy",
+                href: "/services/business",
+                description: [
+                  "Key Performance Indicator Development & Tracking",
+                  "Business Intelligence Reporting & Insights",
+                  "Workflow & Process Improvement",
+                  "Data Analysis & Visual Reporting",
+                  "Support for Strategic Decision-Making",
+                ],
+                icon: design,
               },
             ]}
           />

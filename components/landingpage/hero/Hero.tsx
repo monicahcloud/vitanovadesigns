@@ -46,14 +46,13 @@ const Hero = () => {
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative z-10 text-left max-w-3xl">
         <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-white uppercase">
-          Premium <br />
-          Design & <br />
-          Development
+          premium <br />
+          Business Solutions
         </h1>
         <p className="text-2xl md:text-3xl mt-8 text-gray-300 font-light tracking-wide">
           We Ignite Brands Online.
           <br />
-          Custom Websites, Branding & Digital Experiences.
+          Websites, Strategy, Analytics, Marketing — all in one place.
         </p>
         <Button
           asChild
