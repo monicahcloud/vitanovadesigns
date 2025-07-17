@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
+  // Logging first
+  console.log("📥 Contact API Hit");
   const { name, email, phone, budget, message } = await req.json();
 
   console.log("📥 Incoming Contact Form Data:", {

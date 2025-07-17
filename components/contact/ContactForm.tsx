@@ -84,11 +84,12 @@ const ContactForm = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.8 }}
-      className="w-full bg-white/10 backdrop-blur-md text-white rounded-3xl p-10 shadow-2xl space-y-6 border border-white/20">
+      className="w-full bg-white/10 backdrop-blur-md text-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl space-y-6 border border-white/20">
       <ContactHeader />
+
       {/* Name + Email */}
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex-1 ">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <div className="flex-1">
           <ContactInput
             label="Name"
             name="name"
@@ -108,7 +109,7 @@ const ContactForm = () => {
       </div>
 
       {/* Phone + Budget */}
-      <div className="flex flex-col md:flex-row gap-6">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
         <div className="flex-1">
           <ContactInput
             label="Phone"
@@ -136,21 +137,27 @@ const ContactForm = () => {
         value={formData.message}
         onChange={handleChange}
       />
-      <div className="flex ">
+
+      {/* Submit Button */}
+      <div className="flex">
         <Button
           type="submit"
-          className="w-full  bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 text-lg rounded-lg transition-all duration-300 shadow-md">
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 text-base rounded-lg transition-all duration-300 shadow-md">
           Send Message
         </Button>
       </div>
 
-      <div className="text-center pt-6 flex justify-between items-center">
-        <p className="text-md text-purple-200">Prefer to book time?</p>
+      {/* Bottom CTA */}
+      <div className="text-center pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+        <p className="text-md text-purple-200 whitespace-nowrap">
+          Prefer to book time?
+        </p>
         <a
           href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
           target="_blank"
-          rel="noopener noreferrer">
-          <RippleButton className="mt-3 w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md transition-all duration-300">
+          rel="noopener noreferrer"
+          className="w-full sm:w-auto">
+          <RippleButton className="w-full sm:w-auto px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md transition-all duration-300">
             Book a Free 15-min Call
           </RippleButton>
         </a>
