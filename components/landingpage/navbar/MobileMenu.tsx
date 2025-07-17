@@ -5,7 +5,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { AlignRight, ChevronDown, X } from "lucide-react";
+import { AlignRight, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,8 +51,12 @@ const TopLevelDropdown = ({
 
 // Main Mobile Menu Sheet
 const MobileMenu = () => {
+  const [open, setOpen] = useState(false); // control open state
+
+  // Close sheet when a link is clicked
+  const handleClose = () => setOpen(false);
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTitle></SheetTitle>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon">
@@ -65,89 +69,87 @@ const MobileMenu = () => {
         className="fixed top-0 right-0 !w-[700px] !max-w-[95vw] !h-screen bg-gradient-to-br from-[#0A0826]/90 to-purple-900/90 backdrop-blur-lg text-white p-10 z-[9999] flex flex-col overflow-y-auto">
         {/* Close & CTA */}
         <div className="flex justify-between items-center mb-12">
-          <Link href="/contact" className="border px-6 py-3 text-lg font-bold">
+          <Link
+            href="/contact"
+            onClick={handleClose}
+            className="border px-6 py-3 text-lg font-bold">
             Request a Quote
           </Link>
-          <SheetTrigger asChild>
+          {/* <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
               <X className="size-8 text-white" />
             </Button>
-          </SheetTrigger>
+          </SheetTrigger> */}
         </div>
 
         {/* MegaMenu */}
         <div className="flex flex-col space-y-12">
           <TopLevelDropdown title="Services">
-            <div className="grid grid-cols-3 gap-8 text-lg">
-              <div className="space-y-3">
-                <Link
-                  href="/services/design"
-                  className="text-cyan-400 font-bold uppercase block hover:underline">
-                  Web Design
-                </Link>
-                <ul className="space-y-1">
-                  <li>UI/UX</li>
-                  <li>Web</li>
-                  <li>Mobile App Design</li>
-                  <li>Landing Page Design</li>
-                  <li>Branding</li>
-                </ul>
-              </div>
-              <div className="space-y-3">
-                <Link
-                  href="/services/development"
-                  className="text-cyan-400 font-bold uppercase block hover:underline">
-                  Web Development
-                </Link>
-                <ul className="space-y-1">
-                  <li>Web Development</li>
-                  <li>Software Development</li>
-                  <li>CMS Development</li>
-                  <li>Webflow Development</li>
-                  <li>MVP Development</li>
-                </ul>
-              </div>
-              <div className="space-y-3">
-                <Link
-                  href="/services/marketing"
-                  className="text-cyan-400 font-bold uppercase block hover:underline">
-                  Marketing
-                </Link>
-                <ul className="space-y-1">
-                  <li>Content Marketing</li>
-                  <li>Pitch Deck Design</li>
-                  <li>SEO</li>
-                  <li>Content & CRO</li>
-                </ul>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-base">
+              {[
+                {
+                  href: "/services/design",
+                  title: "Design / Development",
+                  items: [
+                    "UI/UX",
+                    "Web Application",
+                    "Mobile App Design",
+                    "Landing Page Design",
+                    "Optimization",
+                  ],
+                },
+                {
+                  href: "/services/marketing",
+                  title: "Marketing / Branding",
+                  items: [
+                    "Branding",
+                    "SEO & Conversion Strategy",
+                    "CMS Development",
+                    "Pitch Decks",
+                    "Visual Presentations",
+                  ],
+                },
+                {
+                  href: "/services/business",
+                  title: "Business Solutions",
+                  items: [
+                    "KPIs",
+                    "BI Reports",
+                    "Data Analysis & Visualization",
+                    "Workflow & Process Improvement",
+                    "Support for Strategic Decision Making",
+                  ],
+                },
+              ].map(({ href, title, items }) => (
+                <div key={title} className="space-y-3 break-words">
+                  <Link
+                    href={href}
+                    onClick={handleClose}
+                    className="text-cyan-400 font-bold uppercase block hover:underline whitespace-normal leading-snug">
+                    {title}
+                  </Link>
+                  <ul className="space-y-1 text-sm text-gray-200">
+                    {items.map((item) => (
+                      <li key={item} className="break-words">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </TopLevelDropdown>
 
           <Link
             href="/about"
+            onClick={handleClose}
             className="text-3xl font-extrabold uppercase hover:text-cyan-400 transition-colors">
             ABOUT
           </Link>
 
-          {/* <TopLevelDropdown title="Work by Industry">
-            <ul className="space-y-2 pl-4 text-lg">
-              <li>
-                <Link href="#">Retail</Link>
-              </li>
-              <li>
-                <Link href="#">B2B</Link>
-              </li>
-              <li>
-                <Link href="#">Healthcare</Link>
-              </li>
-              <li>
-                <Link href="#">Technology</Link>
-              </li>
-            </ul>
-          </TopLevelDropdown> */}
-
           <Link
             href="/contact"
+            onClick={handleClose}
             className="text-3xl font-extrabold uppercase hover:text-cyan-400 transition-colors">
             Contact
           </Link>

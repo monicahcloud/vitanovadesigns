@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import monicahImg from "../assets/images/monicah.jpg";
 import coryImg from "../assets/images/cory.png";
@@ -52,6 +52,13 @@ export default function AboutPage() {
       (prev) => (prev + newDirection + teamMembers.length) % teamMembers.length
     );
   };
+  const [expanded, setExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth <= 768);
+    }
+  }, []);
 
   return (
     <main className="max-w-9xl mx-auto px-6 py-15 space-y-28 bg-[#0A0826] font-sans text-white">
@@ -167,8 +174,18 @@ export default function AboutPage() {
                   {teamMembers[current].role}
                 </p>
                 <p className="text-lg leading-relaxed text-gray-200 font-light">
-                  {teamMembers[current].bio}
+                  {expanded || !isMobile
+                    ? teamMembers[current].bio
+                    : teamMembers[current].bio.slice(0, 220) + "..."}
                 </p>
+
+                {isMobile && (
+                  <button
+                    onClick={() => setExpanded(!expanded)}
+                    className="text-sm text-cyan-400 mt-2 underline focus:outline-none">
+                    {expanded ? "Show less" : "Show more"}
+                  </button>
+                )}
               </div>
             </motion.div>
           </AnimatePresence>
