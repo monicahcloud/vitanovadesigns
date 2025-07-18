@@ -104,8 +104,6 @@ const MobileMenu = () => {
                   title: "Marketing / Branding",
                   items: [
                     "Content Marketing",
-                    "Pitch Deck Design",
-                    "Content & Conversion Rate Optimization (CRO)",
                     "SEO & Conversion Strategy",
                     "Customer Journey Research",
                     "Brand Messaging",

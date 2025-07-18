@@ -40,12 +40,23 @@ export default function ContactLeftColumn() {
       {/* Contact Info */}
       <div className="z-10  text-white/90 text-md sm:text-base">
         <div className="flex items-start gap-3">
-          <Phone className="mt-1" /> <span>(404) 770-7133</span>
+          <Phone className="mt-1" />
+          <a
+            href="tel:+14047707133"
+            className="text-primary underline hover:opacity-80 transition">
+            (404) 770-7133
+          </a>
         </div>
+
         <div className="flex items-start gap-3 break-words">
           <Mail className="mt-1" />
-          <span className="break-all">monicahcloud@vitanovadesigns.cloud</span>
+          <a
+            href="mailto:monicahcloud@vitanovadesigns.cloud"
+            className="break-all text-primary underline hover:opacity-80 transition">
+            monicahcloud@vitanovadesigns.cloud
+          </a>
         </div>
+
         <div className="flex items-start gap-3">
           <MapPin className="mt-1" /> <span>Atlanta, GA</span>
         </div>
