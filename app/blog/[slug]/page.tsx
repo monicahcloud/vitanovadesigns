@@ -4,6 +4,7 @@ import { Metadata } from "next";
 
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import { FC } from "react";
 
 const posts = [
   {
@@ -267,12 +268,12 @@ export async function generateMetadata({
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+const BlogPostPage: FC<{ params: { slug: string } }> = ({ params }) => {
   const post = posts.find((p) => p.slug === params.slug);
   if (!post) return notFound();
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-20 ">
+    <main className="max-w-4xl mx-auto px-6 py-20">
       {post.image && (
         <Image
           src={post.image}
@@ -292,4 +293,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </article>
     </main>
   );
-}
+};
+
+export default BlogPostPage;
