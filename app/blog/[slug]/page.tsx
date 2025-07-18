@@ -1,11 +1,24 @@
 // app/blog/[slug]/page.tsx
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
-
-import ReactMarkdown from "react-markdown";
+// import { Metadata } from "next";
 import Image from "next/image";
-import { FC } from "react";
+import ReactMarkdown from "react-markdown";
 
+// interface BlogPost {
+//   slug: string;
+//   title: string;
+//   date: string;
+//   image: string;
+//   content: string;
+// }
+
+// interface PageProps {
+//   params: {
+//     slug: string;
+//   };
+// }
+
+// const posts: BlogPost[] = [
 const posts = [
   {
     slug: "brand-authority-through-content",
@@ -255,20 +268,20 @@ That's email marketing done right.`,
   },
 ];
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const post = posts.find((p) => p.slug === params.slug);
-  if (!post) return { title: "Post Not Found" };
-  return {
-    title: post.title,
-    description: post.content.slice(0, 150),
-  };
-}
+// export function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string };
+// }): Metadata {
+//   const post = posts.find((p) => p.slug === params.slug);
+//   if (!post) return { title: "Post Not Found" };
+//   return {
+//     title: post.title,
+//     description: post.content.slice(0, 150),
+//   };
+// }
 
-const BlogPostPage: FC<{ params: { slug: string } }> = ({ params }) => {
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = posts.find((p) => p.slug === params.slug);
   if (!post) return notFound();
 
@@ -293,6 +306,4 @@ const BlogPostPage: FC<{ params: { slug: string } }> = ({ params }) => {
       </article>
     </main>
   );
-};
-
-export default BlogPostPage;
+}
