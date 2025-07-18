@@ -1,43 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Laptop, Code, Cloud, Database } from "lucide-react";
+import { Brain, Server, Code, Database } from "lucide-react";
 
 // Feature list with icons and text
 const features = [
   {
-    icon: Laptop,
-    text: "Responsive, mobile-first designs with performance in mind",
+    icon: Brain,
+    text: "AI-driven automation that enhances efficiency and decision-making",
+  },
+  {
+    icon: Server,
+    text: "Seamless integration of AI systems into existing infrastructure",
   },
   {
     icon: Code,
-    text: "Scalable, maintainable, and well-documented code",
-  },
-  {
-    icon: Cloud,
-    text: "Seamless cloud integration for optimized performance",
+    text: "Scalable and maintainable AI code for evolving business needs",
   },
   {
     icon: Database,
-    text: "Data-driven solutions that scale with your business",
+    text: "Intelligent data management with AI to drive actionable insights",
   },
 ];
 
-export default function WebDetail() {
+export default function AIDetail() {
   return (
     <>
-      {/* ✨ Opening statement */}
+      {/* ✨ Intro paragraph */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-xl leading-relaxed text-center">
-        At VitaNova, we create web solutions that are fast, reliable, and
-        scalable. Our development process is centered around your goals,
-        ensuring we deliver a product that drives results.
+        className="mb-6 text-base md:text-lg leading-relaxed text-center">
+        We integrate advanced AI systems into your existing workflows, enabling
+        intelligent automation and data-driven insights. Our solutions are
+        designed to scale with your needs, providing powerful tools that evolve
+        as your business grows.
       </motion.p>
 
-      {/* 💡 Feature list with icons & motion */}
+      {/* 🌈 Animated feature list */}
       <ul className="space-y-6">
         {features.map(({ icon: Icon, text }, i) => (
           <motion.li

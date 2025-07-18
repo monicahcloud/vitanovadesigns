@@ -75,10 +75,28 @@ export default function AboutPage() {
           <span className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-2 py-1 rounded font-bold shadow-sm">
             full-service business solutions partner
           </span>
-          . From branding and development to business intelligence and
-          marketing, we help you uncover opportunities, solve real problems, and
-          deliver lasting impact.
+          . From branding and development to business solution and marketing, we
+          help you uncover opportunities, solve real problems, and deliver
+          lasting impact.
         </p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button
+            asChild
+            className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-lg px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
+            <a
+              href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+              target="_blank"
+              rel="noopener noreferrer">
+              Book a Discovery Call
+            </a>
+          </Button>
+
+          {/* <Button
+            variant="outline"
+            className="border-white text-white hover:bg-white/10 hover:backdrop-blur">
+            View Our Work
+          </Button> */}
+        </div>
       </section>
 
       <Separator />
@@ -109,22 +127,22 @@ export default function AboutPage() {
             {
               title: "Brand and Identity Design",
               description:
-                "Logos, brand kits, visual systems, and rebranding services.",
+                "Distinctive logos, cohesive brand kits, and strategic rebranding solutions.",
             },
             {
               title: "Custom Website Design",
               description:
-                "Mobile-optimized, SEO-ready sites with interactive features.",
+                "Responsive, SEO-optimized websites with interactive, user-focused design.",
             },
             {
               title: "Marketing Campaigns",
               description:
-                "Email templates, social graphics, landing pages, and eBooks.",
+                "End-to-end campaign assets: email templates, social media graphics, and landing pages.",
             },
             {
-              title: "Business Analytics and Strategy",
+              title: "Business Solutions",
               description:
-                "Dashboards, reports, workflow consulting, and data insights.",
+                "Insightful dashboards, performance reports, and workflow strategies that drive smarter decisions.",
             },
           ].map(({ title, description }) => (
             <div
@@ -218,9 +236,8 @@ export default function AboutPage() {
           every brand.
         </blockquote>
         <p className="text-lg text-gray-200 max-w-xl mx-auto leading-relaxed">
-          Every project we take on is rooted in the belief that your brand
-          deserves a fresh, confident start—backed by strategy and brought to
-          life through purposeful design.
+          Whether you&apos;re launching, scaling, or optimizing—we meet you
+          where you are and build what you need.
         </p>
       </section>
 

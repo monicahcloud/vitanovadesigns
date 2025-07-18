@@ -14,6 +14,7 @@ export const links = [
         name: "Design",
         href: "/services/design",
         description: [
+          "AI System Integration & Automation",
           "UI/UX",
           "Web",
           "Mobile App Design",

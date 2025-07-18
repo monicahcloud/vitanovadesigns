@@ -1,45 +1,44 @@
-/* components/service-details/MobileDetail.tsx */
 "use client";
 
 import { motion } from "framer-motion";
-import { Smartphone, Touchpad, Sparkles, Move } from "lucide-react";
+import { Smartphone, PhoneCall, Wifi, Users } from "lucide-react";
 
+// Feature list with icons and text
 const features = [
   {
     icon: Smartphone,
-    text: "Designed to feel natural and intuitive on every mobile device",
+    text: "High-performance apps built with user-first design principles",
   },
   {
-    icon: Touchpad,
-    text: "Effortless navigation that keeps your users moving forward",
+    icon: PhoneCall,
+    text: "Seamless communication features for mobile users",
   },
   {
-    icon: Sparkles,
-    text: "Polished animations and micro-interactions that bring your brand to life",
+    icon: Wifi,
+    text: "Optimized for mobile networks, ensuring smooth experiences",
   },
   {
-    icon: Move,
-    text: "Responsive layouts that scale gracefully with your business",
+    icon: Users,
+    text: "Multi-platform apps that scale with your audience",
   },
 ];
 
 export default function MobileDetail() {
   return (
     <>
-      {/* ✨ Opening message with motion */}
+      {/* ✨ Opening statement */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-lg leading-relaxed">
-        Your mobile experience should be just as stunning and seamless as your
-        desktop one— maybe even better. At VitaNova, we design mobile interfaces
-        that feel smooth, familiar, and built for action. It&apos;s more than
-        mobile-friendly—it&apos;s mobile-first magic.
+        className="mb-6 text-base md:text-xl leading-relaxed text-center">
+        We create mobile applications that combine functionality and aesthetics.
+        Our focus is on building apps that are intuitive, efficient, and
+        engaging for every user.
       </motion.p>
 
-      {/* 📱 Feature list with icon animation */}
-      <ul className="space-y-5">
+      {/* 💡 Feature list with icons & motion */}
+      <ul className="space-y-6">
         {features.map(({ icon: Icon, text }, i) => (
           <motion.li
             key={text}
@@ -47,11 +46,16 @@ export default function MobileDetail() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-start gap-4 group">
-            <span className="shrink-0 rounded-full p-2 bg-gradient-to-tr from-purple-500 to-pink-500 text-white group-hover:scale-110 transition shadow-lg">
-              <Icon className="w-5 h-5" />
+            className="flex items-start gap-6 group cursor-pointer transition-all ease-in-out">
+            {/* Icon badge with gradient and pulsing effect */}
+            <span className="shrink-0 rounded-full p-5 bg-gradient-to-tr from-purple-600 to-cyan-500 text-white group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-purple-700 group-hover:to-cyan-600 transition-all transform duration-300 ease-in-out shadow-xl">
+              <Icon className="w-8 h-8" />
             </span>
-            <span className="text-base md:text-lg leading-relaxed">{text}</span>
+
+            {/* Text */}
+            <span className="text-base md:text-xl mt-3 leading-relaxed text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
+              {text}
+            </span>
           </motion.li>
         ))}
       </ul>

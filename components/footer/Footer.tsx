@@ -21,8 +21,7 @@ const Footer = () => {
             </h2>
           </Link>
           <p className="mt-4 text-gray-400 max-w-xs">
-            Empowering brands through vibrant design, development, and
-            marketing.
+            We meet you where you are and build what you need.
           </p>
           <Button
             asChild
@@ -53,7 +52,7 @@ const Footer = () => {
               <Link
                 href="/services/business"
                 className="hover:text-purple-400 transition-colors">
-                Business Intelligence & Analytics
+                Business Solutions
               </Link>
             </li>
           </ul>
@@ -98,7 +97,7 @@ const Footer = () => {
                 Blog & Tips
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/case-studies"
                 className="hover:text-purple-400 transition-colors">
@@ -107,11 +106,11 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                href="/faqs"
+                href="/faq"
                 className="hover:text-purple-400 transition-colors">
                 FAQs
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

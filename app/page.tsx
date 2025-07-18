@@ -15,25 +15,14 @@ export default function HomePage() {
           <Services
             title="Our Services"
             subMenu={[
-              // {
-              //   name: "Design",
-              //   href: "/services/design",
-              //   description: [
-              //     "UI/UX",
-              //     "Web",
-              //     "Mobile App Design",
-              //     "Landing Page Design",
-              //     "Branding",
-              //   ],
-              //   icon: design,
-              // },
               {
                 name: "Design/Development",
                 href: "/services/design",
                 description: [
-                  "User Interface & User Experience Design",
+                  "AI System Integration & Automation",
+                  "User Interface & User Experience Design (UI/UX)",
                   "Website and Mobile Application Design",
-                  "Website Development & Content Management Systems",
+                  "Content Management Systems (CMS)",
                   "Custom Software & Prototype Development",
                   "Landing Page Design & Optimization",
                 ],
@@ -43,23 +32,24 @@ export default function HomePage() {
                 name: "Marketing/Branding",
                 href: "/services/marketing",
                 description: [
-                  "Content Marketing Strategy",
-                  "Search Engine Optimization & Conversion Strategy",
-                  "Pitch Decks & Visual Presentations",
+                  "Search Engine Optimization (SEO) & Conversion Strategy",
+                  "Pitch Decks Design & Visual Presentations",
                   "Customer Journey Research & Mapping",
                   "Brand Messaging & Communication",
+                  "Content Marketing",
+                  "Content & Conversion Rate Optimization (CRO)",
+                  "Visual Presentations",
                 ],
                 icon: marketing,
               },
               {
-                name: "Business Intelligence & Strategy",
+                name: "Business Solutions",
                 href: "/services/business",
                 description: [
-                  "Key Performance Indicator Development & Tracking",
-                  "Business Intelligence Reporting & Insights",
-                  "Workflow & Process Improvement",
-                  "Data Analysis & Visual Reporting",
-                  "Support for Strategic Decision-Making",
+                  "Key Performance Indicator (KPI) Development & Tracking",
+                  "Business Intelligence (BI) Reporting & Insights",
+                  "Consulting & Strategy",
+                  "Systems & Automation",
                 ],
                 icon: design,
               },

@@ -52,11 +52,12 @@ const Hero = () => {
         <p className="text-2xl md:text-3xl mt-8 text-gray-300 font-light tracking-wide">
           We Ignite Brands Online.
           <br />
-          Websites, Strategy, Analytics, Marketing — all in one place.
+          AI System Integrations, Websites, Strategy, Analytics, Marketing — all
+          in one place.
         </p>
         <Button
           asChild
-          className="mt-10 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-all">
+          className="mt-10 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-all text-lg">
           <Link href="/contact"> Let&apos;s Build Something Bold</Link>
         </Button>
       </motion.div>

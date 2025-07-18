@@ -1,7 +1,11 @@
-import React from "react";
+import Services from "./Services";
 
 function page() {
-  return <div>page</div>;
+  return (
+    <>
+      <Services title={"Our Services"} subMenu={[]} />
+    </>
+  );
 }
 
 export default page;

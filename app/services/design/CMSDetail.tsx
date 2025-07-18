@@ -1,43 +1,43 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Laptop, Code, Cloud, Database } from "lucide-react";
+import { FileText, Code, Database, Server } from "lucide-react";
 
 // Feature list with icons and text
 const features = [
   {
-    icon: Laptop,
-    text: "Responsive, mobile-first designs with performance in mind",
+    icon: FileText,
+    text: "Custom CMS solutions for flexibility and ease of use",
   },
   {
     icon: Code,
-    text: "Scalable, maintainable, and well-documented code",
-  },
-  {
-    icon: Cloud,
-    text: "Seamless cloud integration for optimized performance",
+    text: "Scalable code for managing dynamic content with ease",
   },
   {
     icon: Database,
-    text: "Data-driven solutions that scale with your business",
+    text: "Robust database management for content storage and retrieval",
+  },
+  {
+    icon: Server,
+    text: "Seamless server-side integration for optimized performance",
   },
 ];
 
-export default function WebDetail() {
+export default function CMSDetail() {
   return (
     <>
-      {/* ✨ Opening statement */}
+      {/* Intro paragraph */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-xl leading-relaxed text-center">
-        At VitaNova, we create web solutions that are fast, reliable, and
-        scalable. Our development process is centered around your goals,
-        ensuring we deliver a product that drives results.
+        className="mb-6 text-base md:text-lg leading-relaxed text-center">
+        We build custom headless CMS solutions that empower you to manage your
+        content effortlessly. Our CMS setups are flexible, scalable, and
+        designed to grow with your business needs.
       </motion.p>
 
-      {/* 💡 Feature list with icons & motion */}
+      {/* Animated feature list */}
       <ul className="space-y-6">
         {features.map(({ icon: Icon, text }, i) => (
           <motion.li

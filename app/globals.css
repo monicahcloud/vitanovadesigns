@@ -4,8 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional plugins */
-@import "tw-animate-css";
+/* Optional: custom prose styling overrides */
+.prose h1,
+.prose h2,
+.prose h3 {
+  @apply text-purple-700 text-2xl font-bold  mt-4 leading-snug;
+}
+
+.prose p {
+  @apply text-gray-200 mb-4 text-lg leading-relaxed;
+}
+
+.prose a {
+  @apply text-cyan-600 underline hover:text-cyan-700;
+}
+
+.prose ul {
+  @apply list-disc pl-6 marker:text-purple-600;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-purple-300 pl-4 text-gray-600 italic;
+}
 
 @custom-variant dark (&:is(.dark *));
 body {
@@ -269,5 +289,26 @@ body {
   }
   50% {
     transform: scale(1.03);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@layer utilities {
+  .animate-spin-slower {
+    animation: spin 40s linear infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 8s ease-in-out infinite;
   }
 }
