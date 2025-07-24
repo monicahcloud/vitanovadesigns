@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function ContactLeftColumn() {
   return (
-    <div className="relative w-full h-full overflow-hidden  p-6 md:p-10 text-white flex flex-col justify-between gap-10">
+    <div className="relative w-full h-full overflow-hidden  p-6 md:p-6 text-white flex flex-col justify-between gap-18">
       {/* Floating SVG Blob Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <svg
@@ -22,7 +22,7 @@ export default function ContactLeftColumn() {
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
           Let&apos;s Grow Your Brand Together.
         </h1>
-        <p className="text-white/80 text-base md:text-lg">
+        <p className="text-white/80 text-center text-base md:text-lg">
           Whether you have a question, opportunity, or just want to say hi —
           we&apos;re all ears. Drop us a message and we&apos;ll respond shortly.
         </p>
@@ -43,7 +43,7 @@ export default function ContactLeftColumn() {
           <Phone className="mt-1" />
           <a
             href="tel:+14047707133"
-            className="text-primary underline hover:opacity-80 transition">
+            className="text-purple-300 underline hover:opacity-80 transition">
             (404) 770-7133
           </a>
         </div>
@@ -52,13 +52,14 @@ export default function ContactLeftColumn() {
           <Mail className="mt-1" />
           <a
             href="mailto:monicahcloud@vitanovadesigns.cloud"
-            className="break-all text-primary underline hover:opacity-80 transition">
+            className="break-all  underline hover:opacity-80 text-sm text-purple-300 transition">
             monicahcloud@vitanovadesigns.cloud
           </a>
         </div>
 
         <div className="flex items-start gap-3">
-          <MapPin className="mt-1" /> <span>Atlanta, GA</span>
+          <MapPin className="mt-1" />{" "}
+          <span className="text-purple-300">Atlanta, GA</span>
         </div>
       </div>
     </div>

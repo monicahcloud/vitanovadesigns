@@ -8,7 +8,7 @@ import RippleButton from "../RippleButton";
 import ContactHeader from "./ContactHeader";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
-
+import emailjs from "@emailjs/browser";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -28,45 +28,31 @@ const ContactForm = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      await emailjs.send(
+        "service_kwpafw8", // EmailJS service ID
+        "template_jv7gzuk", // Template ID
+        formData, // Must match the variable names in the template
+        "XnLTFneXRVkwkphGD" // EmailJS public API key
+      );
+
+      toast(
+        <div>
+          <p className="font-semibold text-green-800">Success!</p>
+          <p className="text-sm text-muted-foreground">
+            Your message has been sent.
+          </p>
+        </div>
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        budget: "",
+        message: "",
       });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast(
-          <div>
-            <p className="font-semibold text-green-800">Success!</p>
-            <p className="text-sm text-muted-foreground">
-              Your message has been sent.
-            </p>
-          </div>
-        );
-
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          budget: "",
-          message: "",
-        });
-      } else {
-        toast(
-          <div>
-            <p className="font-semibold text-red-600">Error</p>
-            <p className="text-sm text-muted-foreground">
-              {data.error || "Failed to send your message."}
-            </p>
-          </div>
-        );
-      }
     } catch (err) {
-      console.error("Submit error:", err);
+      console.error("EmailJS error:", err);
       toast(
         <div>
           <p className="font-semibold text-red-600">Unexpected Error</p>
