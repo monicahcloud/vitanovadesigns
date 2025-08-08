@@ -1,6 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import RippleButton from "@/components/RippleButton";
