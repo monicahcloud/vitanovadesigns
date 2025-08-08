@@ -88,15 +88,15 @@ const Footer = () => {
 
         {/* Column 4 - Resources */}
         <div className="text-center md:text-left flex flex-col items-center md:items-start">
-          <h4 className="text-xl font-bold mb-4 uppercase">Resources</h4>
+          <h4 className="text-xl font-bold mb-4 uppercase">Packages</h4>
           <ul className="space-y-2 text-gray-300">
-            {/* <li>
+            <li>
               <Link
-                href="/blog"
+                href="/church-packages"
                 className="hover:text-purple-400 transition-colors">
-                Blog & Tips
+                Church Packages
               </Link>
-            </li> */}
+            </li>
             {/* <li>
               <Link
                 href="/case-studies"
