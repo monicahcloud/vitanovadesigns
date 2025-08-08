@@ -89,7 +89,7 @@ const ChurchPackagesPage = () => {
           },
           {
             title: "Flourish Plan",
-            price: "$1,995 setup + $129/month",
+            price: "Starting at $1,995 setup + $129/month",
             altPrice: "$2,195 one-time (includes 3 months maintenance)",
             points: [
               "Up to 10 pages (Ministries, Staff, Media, Blog)",
