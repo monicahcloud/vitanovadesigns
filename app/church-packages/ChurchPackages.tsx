@@ -39,11 +39,11 @@ const ChurchPackagesPage = () => {
         }}
         className="relative w-full max-w-9xl mx-auto bg-white shadow-2xl border-t-4 border-purple-500 z-10 px-4 sm:px-6 md:px-8 py-16 sm:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-20 justify-items-center">
         {/* Title */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-xl z-20">
-          <h1 className="text-purple-900 text-3xl sm:text-5xl md:text-5xl font-extrabold text-center">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[90%] max-w-[720px] px-4 sm:px-6 py-4 sm:py-6 rounded-3xl shadow-xl z-20 text-center">
+          <h1 className="text-purple-900 text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
             Church Website Packages
           </h1>
-          <div className="flex items-center mx-auto justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center mt-4">
             <Link
               href="https://calendly.com/vitanovadesigns/15min"
               target="_blank"
@@ -51,7 +51,7 @@ const ChurchPackagesPage = () => {
               aria-label="Book a free 15-minute strategy call">
               <RippleButton
                 rippleColor="rgba(168, 85, 247, 0.4)"
-                className="relative mt-3 bg-white text-purple-800 font-bold py-2 px-4 sm:px-6 rounded-2xl hover:bg-purple-200 transition-all shadow-md text-sm md:text-base">
+                className="relative bg-white text-purple-800 font-bold py-2 px-4 sm:px-6 rounded-2xl hover:bg-purple-200 transition-all shadow-md text-sm md:text-base">
                 <span className="relative z-10">Book a free 15-min call</span>
                 <span className="absolute inset-0 rounded-2xl animate-pulse bg-purple-300 opacity-10" />
               </RippleButton>
@@ -107,11 +107,11 @@ const ChurchPackagesPage = () => {
             whileHover={{ rotateX: 5, rotateY: -5, scale: 1.03 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             style={{ transformStyle: "preserve-3d", perspective: 1000 }}
-            className="rounded-3xl bg-white overflow-hidden cursor-pointer p-6 shadow-md hover:shadow-xl mx-auto items-center justify-center ">
+            className="mt-8 rounded-3xl bg-white overflow-hidden cursor-pointer p-6 shadow-md hover:shadow-xl mx-auto items-center justify-center ">
             <div className="flex justify-around items-center mx-auto ">
               <h2 className="text-xl sm:text-2xl font-bold text-purple-700 mb-3">
                 {plan.title}
-              </h2>{" "}
+              </h2>
               <Image src={plant} alt="growing plant" width={75} height={150} />
             </div>
             <ul className="text-sm sm:text-base text-purple-900 font-medium space-y-1 mb-4">
@@ -153,12 +153,32 @@ const ChurchPackagesPage = () => {
         </motion.div> */}
       </motion.div>
 
-      <div className="flex gap-8 px-5 mx-auto justify-center w-full max-w-9xl">
-        <Image src={church1} alt="church 1" width={300} height={150} />
-        <Image src={church2} alt="church 2" width={300} height={150} />
-        <Image src={church3} alt="church 3" width={300} height={150} />
-        <Image src={church4} alt="church 4" width={300} height={150} />
-        {/* <Image src={church2} alt="church 2" width={300} height={150} /> */}
+      <div className="flex flex-wrap justify-center items-center gap-4 px-4 py-8">
+        <Image
+          src={church1}
+          alt="church 1"
+          className="w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]"
+        />
+        <Image
+          src={church2}
+          alt="church 2"
+          className="w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]"
+        />
+        <Image
+          src={church3}
+          alt="church 3"
+          className="w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]"
+        />
+        <Image
+          src={church4}
+          alt="church 4"
+          className="w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]"
+        />
+        {/* <Image
+          src={church2}
+          alt="church 2"
+          className="w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px]"
+        /> */}
       </div>
     </>
   );
