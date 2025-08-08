@@ -63,7 +63,7 @@ const ChurchPackagesPage = () => {
         {[
           {
             title: "Seed Plan",
-            price: "$595 setup + $39/month",
+            price: "Starting at $495 setup + $39/month",
             altPrice: "$795 one-time (includes 3 months maintenance)",
             points: [
               "Custom 1-page website (Home, Contact, Service Info)",
@@ -76,7 +76,7 @@ const ChurchPackagesPage = () => {
           },
           {
             title: "Grow Plan",
-            price: "$1,295 setup + $79/month",
+            price: "Starting at $995 setup + $79/month",
             altPrice: "$1,495 one-time (includes 3 months maintenance)",
             points: [
               "Up to 5 pages (Home, About, Ministries, Events, Contact)",
@@ -89,7 +89,7 @@ const ChurchPackagesPage = () => {
           },
           {
             title: "Flourish Plan",
-            price: "$2,495 setup + $129/month",
+            price: "$1,995 setup + $129/month",
             altPrice: "$2,995 one-time (includes 3 months maintenance)",
             points: [
               "Up to 10 pages (Ministries, Staff, Media, Blog)",
