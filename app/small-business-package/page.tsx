@@ -1,9 +1,4 @@
-"use client";
-
-// NOTE: This file renders the pricing via a querystring toggle so we can
-// keep it server-friendly *and* interactive without client state.
-// Use /church-packages?billing=onetime or ?billing=subscription (default).
-
+// app/small-business-packages/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -26,93 +21,58 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
-  title: "Church Website Packages | Vita Nova Designs",
+  title: "Small Business Website Packages | Vita Nova Designs",
   description:
-    "Purpose-built church websites with sermons, giving, events, and livestream integrations. Clear pricing, fast delivery, real support.",
-  alternates: { canonical: "/church-packages" },
+    "Modern, mobile-first websites for small businesses. Clear pricing, fast delivery, ongoing support.",
+  alternates: { canonical: "/small-business-packages" },
   openGraph: {
-    title: "Church Website Packages",
+    title: "Small Business Website Packages",
     description:
-      "Seed, Grow, and Flourish packages designed for ministries at every stage. Built with Next.js and Tailwind.",
-    url: "/church-packages",
+      "Stand out online with clean design, SEO setup, and simple pricing. Built with Next.js and Tailwind.",
+    url: "/small-business-packages",
     siteName: "Vita Nova Designs",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Church Website Packages",
+    title: "Small Business Website Packages",
     description:
-      "Modern church websites that help people visit, give, and get connected.",
+      "Modern websites that grow your business. Clear pricing, fast delivery, real results.",
   },
 };
 
-// ----- Pricing config -------------------------------------------------------
-const pricing = {
-  onetime: {
-    seed: 695,
-    grow: 1295,
-    flourish: 2195,
-  },
-  subscription: {
-    termLabel: "12‑month term; own the site after",
-    seed: { setup: 495, monthly: 99, hours: 1 },
-    grow: { setup: 995, monthly: 179, hours: 2 },
-    flourish: { setup: 1995, monthly: 299, hours: 4 },
-  },
-} as const;
-
-type BillingMode = keyof typeof pricing; // 'onetime' | 'subscription'
-
-// Base feature sets per tier (fair for subscription as scoped)
-const seed = [
-  "1‑page site (Home + Service times + Contact)",
-  "Map & directions + simple contact form",
-  "Basic brand setup (colors & typography)",
-  "Domain + hosting guidance",
-  "No sermon import (add‑on available)",
-];
-
-const grow = [
-  "Up to 5 pages (Home, About, Ministries, Events, Contact)",
-  "Sermon archive (video embeds) incl. initial import up to 20",
-  "Newsletter signup + SEO setup & indexing",
-  "Donation button + social integration",
-  "1 month of updates included (onetime only)",
-];
-
-const flourish = [
-  "Up to 7 pages + blog / news",
-  "Branding refresh (logo & palette support)",
-  "Livestream page + advanced sermon library (import up to 60)",
-  "Online giving flows + newcomer follow‑up",
-  "3 months priority support (onetime only)",
-];
-
-// Extras that apply only when Subscription mode is selected
-const subscriptionExtras = (hours: number) => [
-  `${hours} hr/mo content & updates included`,
-  "Proactive security updates, monitoring & backups",
-  "Priority email support",
-];
-
 const features = [
-  "Mobile‑first responsive design",
-  "Sermon library (YouTube/Vimeo embeds)",
-  "Events calendar & announcements",
-  "Online giving & visitor next steps",
+  "Mobile-first responsive design",
   "SEO basics (titles, meta, sitemap)",
+  "Performance best practices",
+  "Accessibility minded",
   "Analytics installed",
+  "1:1 onboarding + handoff",
 ];
 
-export default function ChurchPackagesPage({
-  searchParams,
-}: {
-  searchParams?: { billing?: BillingMode };
-}) {
-  const mode: BillingMode =
-    searchParams?.billing === "onetime" ? "onetime" : "subscription";
+const starter = [
+  "Up to 3 pages (Home, About, Contact)",
+  "Conversion-ready contact form",
+  "Google Maps + social links",
+  "Email capture optional",
+];
 
-  const isSub = mode === "subscription";
+const growth = [
+  "5–7 pages (Services, Blog/News, Gallery)",
+  "SEO setup & indexing",
+  "Blog or news section",
+  "Basic analytics dashboard",
+  "1 month of updates included",
+];
 
+const premium = [
+  "Logo + brand palette design",
+  "Up to 10 pages + blog",
+  "Local SEO + Google Business setup",
+  "Newsletter or booking integration",
+  "3 months priority support",
+];
+
+export default function SmallBusinessPackagesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Hero */}
@@ -120,18 +80,18 @@ export default function ChurchPackagesPage({
         <div className="mx-auto max-w-6xl grid gap-10 md:grid-cols-2 items-center">
           <div>
             <Badge className="mb-3 bg-purple-100 text-purple-700 border-purple-200">
-              For Churches & Ministries
+              New for 2025
             </Badge>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
-              Church Websites{" "}
+              Modern Websites{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-cyan-500">
-                That Help People Take Next Steps
+                That Grow Your Business
               </span>
             </h1>
             <p className="mt-4 text-lg text-slate-600">
-              Reach new visitors, serve your members, and keep events, sermons,
-              and giving in one place. Built on Next.js, React, and Tailwind for
-              speed and reliability.
+              Stand out, get found online, and turn visitors into customers with
+              professional websites built on Next.js, React, and Tailwind. Clear
+              pricing. Fast turnaround. No fluff.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
@@ -163,7 +123,7 @@ export default function ChurchPackagesPage({
               </div>
               <div className="flex items-center gap-3">
                 <Shield className="h-5 w-5 text-cyan-500" />
-                <span>90‑day craftsmanship guarantee</span>
+                <span>90-day craftsmanship guarantee</span>
               </div>
             </div>
           </div>
@@ -191,46 +151,23 @@ export default function ChurchPackagesPage({
       {/* Packages */}
       <section id="packages" className="px-6 md:px-10 lg:px-16 pb-12">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                Simple, Transparent Packages
-              </h2>
-              <p className="mt-2 text-slate-600">
-                Choose the billing that fits your budget. Upgrade anytime.
-              </p>
-            </div>
-            {/* Toggle via querystring so no client state is needed */}
-            <div className="inline-flex rounded-xl border p-1 bg-white shadow-sm">
-              <Link
-                href={`/church-packages?billing=subscription`}
-                className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                  isSub
-                    ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white"
-                    : "text-slate-700 hover:bg-slate-50"
-                }`}>
-                Setup + Monthly
-              </Link>
-              <Link
-                href={`/church-packages?billing=onetime`}
-                className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                  !isSub
-                    ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white"
-                    : "text-slate-700 hover:bg-slate-50"
-                }`}>
-                One‑Time
-              </Link>
-            </div>
+          <div className="mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+              Simple, Transparent Packages
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Choose the package that fits your stage. Upgrade anytime.
+            </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {/* Seed */}
+            {/* Starter */}
             <Card className="flex flex-col">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Layout className="h-5 w-5 text-purple-600" />
-                    <h3 className="text-xl font-semibold">Seed</h3>
+                    <h3 className="text-xl font-semibold">Starter Website</h3>
                   </div>
                   <Badge
                     variant="outline"
@@ -238,32 +175,13 @@ export default function ChurchPackagesPage({
                     Most Affordable
                   </Badge>
                 </div>
-                {isSub ? (
-                  <div className="mt-3">
-                    <p className="text-2xl font-extrabold">
-                      ${pricing.subscription.seed.setup} setup
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      then ${pricing.subscription.seed.monthly}/mo ·{" "}
-                      {pricing.subscription.termLabel}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-3xl font-extrabold mt-3">
-                    ${pricing.onetime.seed}
-                  </p>
-                )}
+                <p className="text-3xl font-extrabold mt-3">$1,500</p>
                 <p className="text-sm text-slate-500">
-                  Essentials to get you online and invite‑ready.
+                  Clean online presence that covers your essentials.
                 </p>
               </CardHeader>
               <CardContent className="grid gap-2">
-                {[
-                  ...seed,
-                  ...(isSub
-                    ? subscriptionExtras(pricing.subscription.seed.hours)
-                    : []),
-                ].map((item) => (
+                {starter.map((item) => (
                   <div className="flex items-start gap-2" key={item}>
                     <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
                     <span className="text-slate-700">{item}</span>
@@ -279,44 +197,25 @@ export default function ChurchPackagesPage({
               </CardFooter>
             </Card>
 
-            {/* Grow */}
+            {/* Growth */}
             <Card className="relative ring-1 ring-cyan-100 shadow-lg flex flex-col">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <LineChart className="h-5 w-5 text-cyan-500" />
-                    <h3 className="text-xl font-semibold">Grow</h3>
+                    <h3 className="text-xl font-semibold">Business Growth</h3>
                   </div>
                   <Badge className="bg-gradient-to-r from-purple-600 to-cyan-500">
-                    Most Popular
+                    Best Value
                   </Badge>
                 </div>
-                {isSub ? (
-                  <div className="mt-3">
-                    <p className="text-2xl font-extrabold">
-                      ${pricing.subscription.grow.setup} setup
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      then ${pricing.subscription.grow.monthly}/mo ·{" "}
-                      {pricing.subscription.termLabel}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-3xl font-extrabold mt-3">
-                    ${pricing.onetime.grow}
-                  </p>
-                )}
+                <p className="text-3xl font-extrabold mt-3">$3,000</p>
                 <p className="text-sm text-slate-500">
-                  More pages, sermons, and momentum for connection and giving.
+                  More pages, better SEO, and momentum for leads.
                 </p>
               </CardHeader>
               <CardContent className="grid gap-2">
-                {[
-                  ...grow,
-                  ...(isSub
-                    ? subscriptionExtras(pricing.subscription.grow.hours)
-                    : []),
-                ].map((item) => (
+                {growth.map((item) => (
                   <div className="flex items-start gap-2" key={item}>
                     <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
                     <span className="text-slate-700">{item}</span>
@@ -332,46 +231,29 @@ export default function ChurchPackagesPage({
               </CardFooter>
             </Card>
 
-            {/* Flourish */}
+            {/* Premium */}
             <Card className="flex flex-col">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-purple-600" />
-                    <h3 className="text-xl font-semibold">Flourish</h3>
+                    <h3 className="text-xl font-semibold">
+                      Premium Brand + Site
+                    </h3>
                   </div>
                   <Badge
                     variant="outline"
                     className="border-cyan-300 text-cyan-600">
-                    For Growing Ministries
+                    For Scaling
                   </Badge>
                 </div>
-                {isSub ? (
-                  <div className="mt-3">
-                    <p className="text-2xl font-extrabold">
-                      ${pricing.subscription.flourish.setup} setup
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      then ${pricing.subscription.flourish.monthly}/mo ·{" "}
-                      {pricing.subscription.termLabel}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-3xl font-extrabold mt-3">
-                    ${pricing.onetime.flourish}
-                  </p>
-                )}
+                <p className="text-3xl font-extrabold mt-3">$5,000</p>
                 <p className="text-sm text-slate-500">
-                  Branding + website + livestream support and growth systems.
+                  Branding + website + growth systems baked in.
                 </p>
               </CardHeader>
               <CardContent className="grid gap-2">
-                {[
-                  ...flourish,
-                  ...(isSub
-                    ? subscriptionExtras(pricing.subscription.flourish.hours)
-                    : []),
-                ].map((item) => (
+                {premium.map((item) => (
                   <div className="flex items-start gap-2" key={item}>
                     <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
                     <span className="text-slate-700">{item}</span>
@@ -386,21 +268,15 @@ export default function ChurchPackagesPage({
             </Card>
           </div>
 
-          <div className="mt-4 text-xs text-slate-500">
-            <p>
-              • Sermon import beyond included amounts: $199 per 50 (or
-              $2/sermon).
-            </p>
-            <p>
-              • Need livestream, podcast hosting, or a member portal?{" "}
-              <Link
-                href="/contact"
-                className="underline underline-offset-4 decoration-purple-400 hover:text-purple-700">
-                Contact us
-              </Link>{" "}
-              for a tailored quote.
-            </p>
-          </div>
+          <p className="mt-4 text-sm text-slate-500">
+            Need something custom or e-commerce?{" "}
+            <Link
+              href="/contact"
+              className="underline underline-offset-4 decoration-purple-400 hover:text-purple-700">
+              Contact us
+            </Link>{" "}
+            for a tailored quote.
+          </p>
         </div>
       </section>
 
@@ -408,11 +284,12 @@ export default function ChurchPackagesPage({
       <section className="px-6 md:px-10 lg:px-16 py-16 border-t bg-white">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-            Our 3‑Step Process
+            Our 3-Step Process
           </h2>
           <p className="mt-2 text-slate-600">
             Clear communication, fast delivery, no surprises.
           </p>
+
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             <Card>
               <CardHeader>
@@ -422,7 +299,7 @@ export default function ChurchPackagesPage({
                 </div>
               </CardHeader>
               <CardContent className="text-slate-600">
-                A 15‑minute call to nail your goals, pages, and timeline. You’ll
+                A 15-minute call to nail your goals, pages, and timeline. You’ll
                 get a fixed quote and start date.
               </CardContent>
             </Card>
@@ -464,25 +341,25 @@ export default function ChurchPackagesPage({
             <details className="group rounded-xl border bg-white p-5 open:shadow-sm">
               <summary className="flex cursor-pointer list-none items-center justify-between">
                 <span className="font-medium text-slate-900">
-                  Can you embed our livestream?
+                  How fast can we launch?
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-open:rotate-90" />
               </summary>
               <p className="mt-3 text-slate-600">
-                Yes — we integrate YouTube, Vimeo, or Church Online Platform so
-                members can watch and chat.
+                Most Starter and Growth sites ship in 2–3 weeks. Premium
+                projects vary based on branding and integrations.
               </p>
             </details>
             <details className="group rounded-xl border bg-white p-5 open:shadow-sm">
               <summary className="flex cursor-pointer list-none items-center justify-between">
                 <span className="font-medium text-slate-900">
-                  Do you set up online giving?
+                  Do you provide hosting & maintenance?
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-open:rotate-90" />
               </summary>
               <p className="mt-3 text-slate-600">
-                We’ll connect your existing giving provider or recommend options
-                and wire the flows into your site.
+                Yes — we offer care plans for hosting, updates, backups, and
+                small content changes. Ask on the call and we’ll match a plan.
               </p>
             </details>
             <details className="group rounded-xl border bg-white p-5 open:shadow-sm">
@@ -493,8 +370,8 @@ export default function ChurchPackagesPage({
                 <ArrowRight className="h-4 w-4 transition-transform group-open:rotate-90" />
               </summary>
               <p className="mt-3 text-slate-600">
-                Absolutely. Flourish includes branding support. For Seed/Grow,
-                add copywriting or photography as an add‑on.
+                Absolutely. Premium includes branding. For Starter/Growth, we
+                can add copywriting or photography as an add-on.
               </p>
             </details>
           </div>
@@ -527,11 +404,11 @@ export default function ChurchPackagesPage({
           <div className="grid gap-6 md:grid-cols-2 items-center">
             <div>
               <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
-                Ready to serve more people online?
+                Ready to turn visitors into customers?
               </h3>
               <p className="mt-2 text-slate-600">
                 We combine clean design with SEO and performance so your website
-                actually supports your ministry.
+                actually works for your business.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">

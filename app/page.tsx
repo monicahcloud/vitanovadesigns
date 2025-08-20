@@ -7,7 +7,7 @@ import marketing from "../app/assets/images/marketing.png";
 export default function HomePage() {
   return (
     <>
-      <main className="min-h-screen bg-gradient-to-br from-purple-700 to-blue-500 text-white">
+      <main className="min-h-screen bg-gradient-to-br from-purple-700 to-blue-500  text-white">
         <Hero />
 
         {/* MegaMenu as standalone services block */}

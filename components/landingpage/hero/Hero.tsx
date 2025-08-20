@@ -20,12 +20,12 @@ const Hero = () => {
   const totalHeight = (imageHeight + gap) * projectImages.length;
 
   return (
-    <main className="relative flex items-center justify-between min-h-[90vh] bg-[#0a082689] overflow-hidden px-12">
+    <main className="relative flex items-center justify-between min-h-[90vh] bg-[#0a082689] overflow-hidden px-12 ">
       {/* Carousel as background-right */}
       <motion.div
         animate={{ y: [0, -totalHeight] }}
         transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-        className="absolute right-5 top-0 h-full flex flex-col gap-8 opacity-10 z-0"
+        className="absolute right-5 top-0 h-full mx-15 flex flex-col gap-8 opacity-10 z-0"
         style={{ willChange: "transform" }}>
         {projectImages.concat(projectImages).map((img, index) => (
           <Image
@@ -44,7 +44,7 @@ const Hero = () => {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 text-left max-w-3xl">
+        className="relative z-10 text-left max-w-3xl mx-15">
         <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-white uppercase">
           premium <br />
           Business Solutions

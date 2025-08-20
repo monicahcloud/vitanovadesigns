@@ -44,7 +44,7 @@ export default function ContactLeftColumn() {
           <a
             href="tel:+14047707133"
             className="text-purple-300 underline hover:opacity-80 transition">
-            (404) 770-7133
+            (404) 703-7133
           </a>
         </div>
 

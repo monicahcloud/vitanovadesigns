@@ -9,6 +9,7 @@ type Props = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
+  autoComplete: string;
 };
 
 const ContactInput = ({
@@ -29,7 +30,7 @@ const ContactInput = ({
       value={value}
       onChange={onChange}
       required
-      className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-400"
+      className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-400 text-slate-900 bg-white"
     />
   </div>
 );
