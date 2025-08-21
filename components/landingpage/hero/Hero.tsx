@@ -45,9 +45,9 @@ const Hero = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative z-10 text-left max-w-3xl mx-15">
-        <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tighter text-white uppercase">
-          premium <br />
-          Business Solutions
+        <h1 className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tight text-white uppercase">
+          Make Your Business <br />
+          AI-Ready
         </h1>
         <p className="text-2xl md:text-3xl mt-8 text-gray-300 font-light tracking-wide">
           We Ignite Brands Online.

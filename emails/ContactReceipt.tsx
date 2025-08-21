@@ -1,35 +1,30 @@
 import * as React from "react";
 import BrandLayout from "./BrandLayout";
-import { Heading, Text, Button } from "@react-email/components";
 
 export default function ContactReceipt({ name }: { name: string }) {
+  const cta: React.CSSProperties = {
+    background: "#06b6d4",
+    color: "#fff",
+    borderRadius: 8,
+    padding: "10px 14px",
+    textDecoration: "none",
+    display: "inline-block",
+    fontWeight: 600,
+  };
+
   return (
     <BrandLayout preview="Thanks — we received your message">
-      <Heading as="h2" style={{ margin: "0 0 12px", color: "#111827" }}>
-        Thanks, {name} — we received your message
-      </Heading>
-
-      <Text style={{ color: "#374151" }}>
+      <h2 style={{ margin: "0 0 12px", color: "#111827" }}>
+        Thanks, {name} — we received your message ✅
+      </h2>
+      <p style={{ color: "#374151" }}>
         We typically reply within 24 hours. If it’s urgent, call (770) 703-7133.
-      </Text>
-
+      </p>
       <div style={{ marginTop: 18 }}>
-        <Button
-          href="https://vitanovadesigns.cloud"
-          style={{
-            backgroundColor: "#06b6d4",
-            color: "#ffffff",
-            borderRadius: 8,
-            padding: "10px 14px",
-            textDecoration: "none",
-            display: "inline-block",
-            fontWeight: 600,
-          }}>
+        <a href="https://vitanovadesigns.cloud" style={cta}>
           Visit our website
-        </Button>
+        </a>
       </div>
-
-      {/* Signature is included automatically by BrandLayout */}
     </BrandLayout>
   );
 }

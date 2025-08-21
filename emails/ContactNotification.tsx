@@ -1,6 +1,5 @@
 import * as React from "react";
 import BrandLayout from "./BrandLayout";
-import { Heading, Text, Button, Hr } from "@react-email/components";
 
 type Props = {
   name: string;
@@ -20,9 +19,9 @@ export default function ContactNotification({
   message,
 }: Props) {
   const row: React.CSSProperties = { margin: "6px 0", color: "#374151" };
-  const button: React.CSSProperties = {
-    backgroundColor: "#6d28d9",
-    color: "#ffffff",
+  const btn: React.CSSProperties = {
+    background: "#6d28d9",
+    color: "#fff",
     borderRadius: 8,
     padding: "10px 14px",
     textDecoration: "none",
@@ -32,45 +31,46 @@ export default function ContactNotification({
 
   return (
     <BrandLayout preview={`New contact from ${name}`}>
-      <Heading as="h2" style={{ margin: "0 0 12px", color: "#111827" }}>
+      <h2 style={{ margin: "0 0 12px", color: "#111827" }}>
         New Contact Form Submission
-      </Heading>
-
-      <Text style={row}>
+      </h2>
+      <p style={row}>
         <strong>Name:</strong> {name}
-      </Text>
-      <Text style={row}>
+      </p>
+      <p style={row}>
         <strong>Email:</strong> {email}
-      </Text>
+      </p>
       {phone && (
-        <Text style={row}>
+        <p style={row}>
           <strong>Phone:</strong> {phone}
-        </Text>
+        </p>
       )}
       {projectType && (
-        <Text style={row}>
+        <p style={row}>
           <strong>Project Type:</strong> {projectType}
-        </Text>
+        </p>
       )}
       {budget && (
-        <Text style={row}>
+        <p style={row}>
           <strong>Budget:</strong> {budget}
-        </Text>
+        </p>
       )}
 
-      <Hr style={{ borderColor: "#eee", margin: "16px 0" }} />
+      <hr
+        style={{ border: 0, borderTop: "1px solid #eee", margin: "16px 0" }}
+      />
 
-      <Text style={{ margin: 0, color: "#111827" }}>
+      <p style={{ margin: 0, color: "#111827" }}>
         <strong>Message</strong>
-      </Text>
-      <Text style={{ whiteSpace: "pre-wrap", marginTop: 8, color: "#374151" }}>
+      </p>
+      <p style={{ whiteSpace: "pre-wrap", marginTop: 8, color: "#374151" }}>
         {message}
-      </Text>
+      </p>
 
       <div style={{ marginTop: 20 }}>
-        <Button href={`mailto:${email}`} style={button}>
+        <a href={`mailto:${email}`} style={btn}>
           Reply to {name}
-        </Button>
+        </a>
       </div>
     </BrandLayout>
   );
