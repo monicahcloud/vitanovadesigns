@@ -64,7 +64,7 @@ const fmt = (n: number) =>
   });
 
 export default function ChurchPackages() {
-  const [mode, setMode] = useState<BillingMode>("onetime");
+  const [mode, setMode] = useState<BillingMode>("subscription");
   const isSub = mode === "subscription";
 
   return (
@@ -81,25 +81,29 @@ export default function ChurchPackages() {
           </div>
 
           <div className="inline-flex rounded-xl border p-1 bg-white shadow-sm">
-            <button
-              type="button"
-              onClick={() => setMode("onetime")}
-              className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                !isSub
-                  ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white"
-                  : "text-slate-700 hover:bg-slate-50"
-              }`}>
-              One-Time
-            </button>
+            {/* Setup + Monthly FIRST */}
             <button
               type="button"
               onClick={() => setMode("subscription")}
+              aria-pressed={isSub}
               className={`px-3 py-1.5 text-sm rounded-lg transition ${
                 isSub
                   ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white"
                   : "text-slate-700 hover:bg-slate-50"
               }`}>
               Setup + Monthly
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMode("onetime")}
+              aria-pressed={!isSub}
+              className={`px-3 py-1.5 text-sm rounded-lg transition ${
+                !isSub
+                  ? "bg-gradient-to-r from-purple-600 to-cyan-500 text-white"
+                  : "text-slate-700 hover:bg-slate-50"
+              }`}>
+              One-Time
             </button>
           </div>
         </div>
