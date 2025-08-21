@@ -113,8 +113,7 @@ export default function SmallBusinessPackagesPage() {
               </ul>
               <div className="mt-6 flex items-center gap-3 text-sm text-slate-500">
                 <Sparkles className="h-4 w-4 text-purple-600" />
-                Built by a former educator + BI analyst who cares about clarity
-                and results.
+                Clear plans. Fair pricing. Real support.
               </div>
             </div>
           </div>

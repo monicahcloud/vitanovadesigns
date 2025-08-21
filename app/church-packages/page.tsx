@@ -89,7 +89,7 @@ export default function Page() {
             <div className="mt-8 grid grid-cols-2 gap-6 text-slate-700">
               <div className="flex items-center gap-3">
                 <Clock className="h-5 w-5 text-purple-600" />
-                <span>Typical delivery: 2–3 weeks</span>
+                <span>Typical delivery: 2–3 weeks for Seed plan</span>
               </div>
               <div className="flex items-center gap-3">
                 <Shield className="h-5 w-5 text-cyan-500" />
@@ -110,8 +110,7 @@ export default function Page() {
               </ul>
               <div className="mt-6 flex items-center gap-3 text-sm text-slate-500">
                 <Sparkles className="h-4 w-4 text-purple-600" />
-                Built by a former educator + BI analyst who cares about clarity
-                and results.
+                Ministry-minded partner focused on clarity and care.
               </div>
             </div>
           </div>
