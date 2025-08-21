@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { render } from "@react-email/render";
-import ContactNotification from "@/app/emails/ContactNotification";
-import ContactReceipt from "@/app/emails/ContactReceipt";
+import ContactNotification from "@/emails/ContactNotification";
+import ContactReceipt from "@/emails/ContactReceipt";
 
 export const runtime = "nodejs";
 
