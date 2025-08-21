@@ -1,5 +1,6 @@
-// /emails/ContactNotification.tsx
 import * as React from "react";
+import BrandLayout from "./BrandLayout";
+import { Heading, Text, Button, Hr } from "@react-email/components";
 
 type Props = {
   name: string;
@@ -18,42 +19,59 @@ export default function ContactNotification({
   budget,
   message,
 }: Props) {
+  const row: React.CSSProperties = { margin: "6px 0", color: "#374151" };
+  const button: React.CSSProperties = {
+    backgroundColor: "#6d28d9",
+    color: "#ffffff",
+    borderRadius: 8,
+    padding: "10px 14px",
+    textDecoration: "none",
+    display: "inline-block",
+    fontWeight: 600,
+  };
+
   return (
-    <div
-      style={{
-        fontFamily:
-          "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial",
-      }}>
-      <h2 style={{ margin: "0 0 8px" }}>New Contact Form Submission</h2>
-      <p>
+    <BrandLayout preview={`New contact from ${name}`}>
+      <Heading as="h2" style={{ margin: "0 0 12px", color: "#111827" }}>
+        New Contact Form Submission
+      </Heading>
+
+      <Text style={row}>
         <strong>Name:</strong> {name}
-      </p>
-      <p>
+      </Text>
+      <Text style={row}>
         <strong>Email:</strong> {email}
-      </p>
-      {phone ? (
-        <p>
+      </Text>
+      {phone && (
+        <Text style={row}>
           <strong>Phone:</strong> {phone}
-        </p>
-      ) : null}
-      {projectType ? (
-        <p>
+        </Text>
+      )}
+      {projectType && (
+        <Text style={row}>
           <strong>Project Type:</strong> {projectType}
-        </p>
-      ) : null}
-      {budget ? (
-        <p>
+        </Text>
+      )}
+      {budget && (
+        <Text style={row}>
           <strong>Budget:</strong> {budget}
-        </p>
-      ) : null}
-      <p style={{ marginTop: 16 }}>
-        <strong>Message:</strong>
-      </p>
-      <pre style={{ whiteSpace: "pre-wrap", marginTop: 8 }}>{message}</pre>
-      <hr
-        style={{ margin: "16px 0", border: 0, borderTop: "1px solid #eee" }}
-      />
-      <small>Sent automatically from vitanovadesigns.cloud</small>
-    </div>
+        </Text>
+      )}
+
+      <Hr style={{ borderColor: "#eee", margin: "16px 0" }} />
+
+      <Text style={{ margin: 0, color: "#111827" }}>
+        <strong>Message</strong>
+      </Text>
+      <Text style={{ whiteSpace: "pre-wrap", marginTop: 8, color: "#374151" }}>
+        {message}
+      </Text>
+
+      <div style={{ marginTop: 20 }}>
+        <Button href={`mailto:${email}`} style={button}>
+          Reply to {name}
+        </Button>
+      </div>
+    </BrandLayout>
   );
 }
