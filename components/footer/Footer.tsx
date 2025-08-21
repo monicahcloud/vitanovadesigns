@@ -97,6 +97,13 @@ const Footer = () => {
                 Church Packages
               </Link>
             </li>
+            <li>
+              <Link
+                href="/small-business-package"
+                className="hover:text-purple-400 transition-colors">
+                Small Business Packages
+              </Link>
+            </li>
             {/* <li>
               <Link
                 href="/case-studies"

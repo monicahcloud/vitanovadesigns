@@ -5,21 +5,16 @@ import {
   ArrowRight,
   CheckCircle2,
   Clock,
-  Layout,
-  LineChart,
+  Layout as LayoutIcon,
   Mail,
   Shield,
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
+import SmallBusinessPackage from "./SmallBusinessPackage";
+import { GuaranteeDetails } from "@/components/CraftsmanshipGuarantee";
 export const metadata: Metadata = {
   title: "Small Business Website Packages | Vita Nova Designs",
   description:
@@ -49,50 +44,27 @@ const features = [
   "1:1 onboarding + handoff",
 ];
 
-const starter = [
-  "Up to 3 pages (Home, About, Contact)",
-  "Conversion-ready contact form",
-  "Google Maps + social links",
-  "Email capture optional",
-];
-
-const growth = [
-  "5–7 pages (Services, Blog/News, Gallery)",
-  "SEO setup & indexing",
-  "Blog or news section",
-  "Basic analytics dashboard",
-  "1 month of updates included",
-];
-
-const premium = [
-  "Logo + brand palette design",
-  "Up to 10 pages + blog",
-  "Local SEO + Google Business setup",
-  "Newsletter or booking integration",
-  "3 months priority support",
-];
-
 export default function SmallBusinessPackagesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Hero */}
       <section className="relative px-6 md:px-10 lg:px-16 py-20">
-        <div className="mx-auto max-w-6xl grid gap-10 md:grid-cols-2 items-center">
+        <div className="mx-auto max-w-7xl grid gap-10 md:grid-cols-2 items-center">
           <div>
             <Badge className="mb-3 bg-purple-100 text-purple-700 border-purple-200">
               New for 2025
             </Badge>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
-              Modern Websites{" "}
+              Websites{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-cyan-500">
-                That Grow Your Business
+                That Win You Customers
               </span>
             </h1>
             <p className="mt-4 text-lg text-slate-600">
-              Stand out, get found online, and turn visitors into customers with
-              professional websites built on Next.js, React, and Tailwind. Clear
+              Stand out, get found, and turn clicks into customers. Clear
               pricing. Fast turnaround. No fluff.
             </p>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
                 asChild
@@ -119,8 +91,9 @@ export default function SmallBusinessPackagesPage() {
             <div className="mt-8 grid grid-cols-2 gap-6 text-slate-700">
               <div className="flex items-center gap-3">
                 <Clock className="h-5 w-5 text-purple-600" />
-                <span>Typical delivery: 2–3 weeks</span>
+                <span>Typical delivery: 2–3 weeks for Lite</span>
               </div>
+
               <div className="flex items-center gap-3">
                 <Shield className="h-5 w-5 text-cyan-500" />
                 <span>90-day craftsmanship guarantee</span>
@@ -148,137 +121,8 @@ export default function SmallBusinessPackagesPage() {
         </div>
       </section>
 
-      {/* Packages */}
-      <section id="packages" className="px-6 md:px-10 lg:px-16 pb-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-              Simple, Transparent Packages
-            </h2>
-            <p className="mt-2 text-slate-600">
-              Choose the package that fits your stage. Upgrade anytime.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {/* Starter */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Layout className="h-5 w-5 text-purple-600" />
-                    <h3 className="text-xl font-semibold">Starter Website</h3>
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="border-purple-300 text-purple-700">
-                    Most Affordable
-                  </Badge>
-                </div>
-                <p className="text-3xl font-extrabold mt-3">$1,500</p>
-                <p className="text-sm text-slate-500">
-                  Clean online presence that covers your essentials.
-                </p>
-              </CardHeader>
-              <CardContent className="grid gap-2">
-                {starter.map((item) => (
-                  <div className="flex items-start gap-2" key={item}>
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
-                    <span className="text-slate-700">{item}</span>
-                  </div>
-                ))}
-              </CardContent>
-              <CardFooter className="mt-auto">
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 hover:opacity-90">
-                  <Link href="/contact">Get Started</Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Growth */}
-            <Card className="relative ring-1 ring-cyan-100 shadow-lg flex flex-col">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <LineChart className="h-5 w-5 text-cyan-500" />
-                    <h3 className="text-xl font-semibold">Business Growth</h3>
-                  </div>
-                  <Badge className="bg-gradient-to-r from-purple-600 to-cyan-500">
-                    Best Value
-                  </Badge>
-                </div>
-                <p className="text-3xl font-extrabold mt-3">$3,000</p>
-                <p className="text-sm text-slate-500">
-                  More pages, better SEO, and momentum for leads.
-                </p>
-              </CardHeader>
-              <CardContent className="grid gap-2">
-                {growth.map((item) => (
-                  <div className="flex items-start gap-2" key={item}>
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
-                    <span className="text-slate-700">{item}</span>
-                  </div>
-                ))}
-              </CardContent>
-              <CardFooter className="mt-auto">
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 hover:opacity-90">
-                  <Link href="/contact">Book a Call</Link>
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Premium */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-purple-600" />
-                    <h3 className="text-xl font-semibold">
-                      Premium Brand + Site
-                    </h3>
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="border-cyan-300 text-cyan-600">
-                    For Scaling
-                  </Badge>
-                </div>
-                <p className="text-3xl font-extrabold mt-3">$5,000</p>
-                <p className="text-sm text-slate-500">
-                  Branding + website + growth systems baked in.
-                </p>
-              </CardHeader>
-              <CardContent className="grid gap-2">
-                {premium.map((item) => (
-                  <div className="flex items-start gap-2" key={item}>
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
-                    <span className="text-slate-700">{item}</span>
-                  </div>
-                ))}
-              </CardContent>
-              <CardFooter className="mt-auto">
-                <Button asChild className="w-full" variant="secondary">
-                  <Link href="/contact">Reserve Your Spot</Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-
-          <p className="mt-4 text-sm text-slate-500">
-            Need something custom or e-commerce?{" "}
-            <Link
-              href="/contact"
-              className="underline underline-offset-4 decoration-purple-400 hover:text-purple-700">
-              Contact us
-            </Link>{" "}
-            for a tailored quote.
-          </p>
-        </div>
-      </section>
+      {/* Pricing (client-side toggle) */}
+      <SmallBusinessPackage />
 
       {/* Process */}
       <section className="px-6 md:px-10 lg:px-16 py-16 border-t bg-white">
@@ -306,7 +150,7 @@ export default function SmallBusinessPackagesPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Layout className="h-5 w-5 text-cyan-500" />
+                  <LayoutIcon className="h-5 w-5 text-cyan-500" />
                   <h3 className="font-semibold">2) Design & Build</h3>
                 </div>
               </CardHeader>
@@ -329,6 +173,7 @@ export default function SmallBusinessPackagesPage() {
             </Card>
           </div>
         </div>
+        <GuaranteeDetails />
       </section>
 
       {/* FAQ */}

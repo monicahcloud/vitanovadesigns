@@ -16,38 +16,43 @@ type BillingMode = "onetime" | "subscription";
 
 const pricing = {
   onetime: {
-    seed: 695,
-    grow: 1295,
-    flourish: 2195,
+    // keep your one-time tiers, but show "Starting at"
+    lite: 1500,
+    essential: 3000,
+    pro: 5000,
   },
+  // optional if you still want to keep a subscription tab visible
   subscription: {
     termLabel: "12-month term; own the site after",
-    seed: { setup: 450, monthly: 119, hours: 1 },
-    grow: { setup: 850, monthly: 199, hours: 2 },
-    flourish: { setup: 1450, monthly: 319, hours: 4 },
+    lite: { setup: 525, monthly: 139, hours: 1 }, // care-included model (adjust if desired)
+    essential: { setup: 1050, monthly: 275, hours: 2 },
+    pro: { setup: 1750, monthly: 459, hours: 4 },
   },
 } as const;
 
-// REDUCED SCOPES
-const seed = [
-  "1-page site (Service times, location, contact)",
-  "Map & directions + simple contact form",
-  "Basic brand setup (colors & type)",
-  "No sermon import (add-on available)",
+// REDUCED SCOPES to fit “Starting at” prices
+const lite = [
+  "Up to 2 pages (Home + Contact)",
+  "Conversion-ready contact form",
+  "Basic SEO fields (titles & meta)",
+  "Google Map or social links",
+  "1 round of revisions",
 ];
 
-const grow = [
-  "Up to 4 pages (Home, About, Ministries, Contact)",
-  "Sermon embeds (initial import up to 10)",
-  "Newsletter signup OR donation button (choose one)",
+const essential = [
+  "Up to 4 pages (e.g., Home, About, Services, Contact)",
   "Search-friendly setup & indexing",
+  "Blog/news ready (no content migration)",
+  "Email capture or booking link (choose one)",
+  "1 month of minor updates (one-time only)",
 ];
 
-const flourish = [
-  "Up to 6 pages",
-  "Brand palette & type refresh (no full logo)",
-  "Livestream page + sermon library (import up to 20)",
-  "Giving flow + newcomer follow-up prompt",
+const pro = [
+  "Up to 6 pages + 1 simple landing page",
+  "Brand palette & type refresh (no full logo design)",
+  "Local SEO basics + Google Business link",
+  "Newsletter OR booking integration (choose one)",
+  "2 months priority support (one-time only)",
 ];
 
 const subscriptionExtras = (hours: number) => [
@@ -63,14 +68,14 @@ const fmt = (n: number) =>
     maximumFractionDigits: 0,
   });
 
-export default function ChurchPackages() {
+export default function SmallBusinessPackage() {
   const [mode, setMode] = useState<BillingMode>("onetime");
   const isSub = mode === "subscription";
 
   return (
     <section id="packages" className="px-6 md:px-10 lg:px-16 pb-12">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-6 flex items-end justify-between gap-4">
+        <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
               Simple, Transparent Packages
@@ -80,6 +85,7 @@ export default function ChurchPackages() {
             </p>
           </div>
 
+          {/* LOCAL UI TOGGLE (no URL change) */}
           <div className="inline-flex rounded-xl border p-1 bg-white shadow-sm">
             <button
               type="button"
@@ -105,13 +111,13 @@ export default function ChurchPackages() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {/* Seed */}
+          {/* Lite */}
           <Card className="flex flex-col">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Layout className="h-5 w-5 text-purple-600" />
-                  <h3 className="text-xl font-semibold">Seed</h3>
+                  <h3 className="text-xl font-semibold">Lite</h3>
                 </div>
                 <Badge
                   variant="outline"
@@ -125,10 +131,10 @@ export default function ChurchPackages() {
                     Starting at
                   </p>
                   <p className="text-2xl font-extrabold">
-                    {fmt(pricing.subscription.seed.setup)} setup
+                    {fmt(pricing.subscription.lite.setup)} setup
                   </p>
                   <p className="text-sm text-slate-500">
-                    then from {fmt(pricing.subscription.seed.monthly)}/mo ·{" "}
+                    then from {fmt(pricing.subscription.lite.monthly)}/mo ·{" "}
                     {pricing.subscription.termLabel}
                   </p>
                 </div>
@@ -138,19 +144,19 @@ export default function ChurchPackages() {
                     Starting at
                   </p>
                   <p className="text-3xl font-extrabold">
-                    {fmt(pricing.onetime.seed)}
+                    {fmt(pricing.onetime.lite)}
                   </p>
                 </>
               )}
               <p className="text-sm text-slate-500 mt-2">
-                Invite-ready, simple and clear.
+                Essentials to get you live quickly.
               </p>
             </CardHeader>
             <CardContent className="grid gap-2">
               {[
-                ...seed,
+                ...lite,
                 ...(isSub
-                  ? subscriptionExtras(pricing.subscription.seed.hours)
+                  ? subscriptionExtras(pricing.subscription.lite.hours)
                   : []),
               ].map((item) => (
                 <div className="flex items-start gap-2" key={item}>
@@ -168,16 +174,16 @@ export default function ChurchPackages() {
             </CardFooter>
           </Card>
 
-          {/* Grow */}
+          {/* Essential */}
           <Card className="relative ring-1 ring-cyan-100 shadow-lg flex flex-col">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <LineChart className="h-5 w-5 text-cyan-500" />
-                  <h3 className="text-xl font-semibold">Grow</h3>
+                  <h3 className="text-xl font-semibold">Essential</h3>
                 </div>
                 <Badge className="bg-gradient-to-r from-purple-600 to-cyan-500">
-                  Most Popular
+                  Best Value
                 </Badge>
               </div>
               {isSub ? (
@@ -186,10 +192,10 @@ export default function ChurchPackages() {
                     Starting at
                   </p>
                   <p className="text-2xl font-extrabold">
-                    {fmt(pricing.subscription.grow.setup)} setup
+                    {fmt(pricing.subscription.essential.setup)} setup
                   </p>
                   <p className="text-sm text-slate-500">
-                    then from {fmt(pricing.subscription.grow.monthly)}/mo ·{" "}
+                    then from {fmt(pricing.subscription.essential.monthly)}/mo ·{" "}
                     {pricing.subscription.termLabel}
                   </p>
                 </div>
@@ -199,19 +205,19 @@ export default function ChurchPackages() {
                     Starting at
                   </p>
                   <p className="text-3xl font-extrabold">
-                    {fmt(pricing.onetime.grow)}
+                    {fmt(pricing.onetime.essential)}
                   </p>
                 </>
               )}
               <p className="text-sm text-slate-500 mt-2">
-                Sermons and connections, without the bloat.
+                Room to grow with the right basics.
               </p>
             </CardHeader>
             <CardContent className="grid gap-2">
               {[
-                ...grow,
+                ...essential,
                 ...(isSub
-                  ? subscriptionExtras(pricing.subscription.grow.hours)
+                  ? subscriptionExtras(pricing.subscription.essential.hours)
                   : []),
               ].map((item) => (
                 <div className="flex items-start gap-2" key={item}>
@@ -229,18 +235,18 @@ export default function ChurchPackages() {
             </CardFooter>
           </Card>
 
-          {/* Flourish */}
+          {/* Pro */}
           <Card className="flex flex-col">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5 text-purple-600" />
-                  <h3 className="text-xl font-semibold">Flourish</h3>
+                  <h3 className="text-xl font-semibold">Pro</h3>
                 </div>
                 <Badge
                   variant="outline"
                   className="border-cyan-300 text-cyan-600">
-                  For Growing Ministries
+                  For Scaling
                 </Badge>
               </div>
               {isSub ? (
@@ -249,10 +255,10 @@ export default function ChurchPackages() {
                     Starting at
                   </p>
                   <p className="text-2xl font-extrabold">
-                    {fmt(pricing.subscription.flourish.setup)} setup
+                    {fmt(pricing.subscription.pro.setup)} setup
                   </p>
                   <p className="text-sm text-slate-500">
-                    then from {fmt(pricing.subscription.flourish.monthly)}/mo ·{" "}
+                    then from {fmt(pricing.subscription.pro.monthly)}/mo ·{" "}
                     {pricing.subscription.termLabel}
                   </p>
                 </div>
@@ -262,19 +268,19 @@ export default function ChurchPackages() {
                     Starting at
                   </p>
                   <p className="text-3xl font-extrabold">
-                    {fmt(pricing.onetime.flourish)}
+                    {fmt(pricing.onetime.pro)}
                   </p>
                 </>
               )}
               <p className="text-sm text-slate-500 mt-2">
-                Livestream-ready with a deeper library.
+                Brand refresh and a focused growth setup.
               </p>
             </CardHeader>
             <CardContent className="grid gap-2">
               {[
-                ...flourish,
+                ...pro,
                 ...(isSub
-                  ? subscriptionExtras(pricing.subscription.flourish.hours)
+                  ? subscriptionExtras(pricing.subscription.pro.hours)
                   : []),
               ].map((item) => (
                 <div className="flex items-start gap-2" key={item}>
@@ -291,6 +297,7 @@ export default function ChurchPackages() {
           </Card>
         </div>
 
+        {/* Small print */}
         <p className="mt-6 text-xs text-slate-500">
           “Starting at” prices reflect typical scopes. Final pricing may vary
           with features, content, integrations, or timeline.
