@@ -290,8 +290,10 @@ export default function SmallBusinessPackage() {
               ))}
             </CardContent>
             <CardFooter className="mt-auto">
-              <Button asChild className="w-full" variant="secondary">
-                <Link href="/contact">Request a Proposal</Link>
+              <Button
+                asChild
+                className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 hover:opacity-90">
+                <Link href="/contact">Let&apos;s Begin</Link>
               </Button>
             </CardFooter>
           </Card>

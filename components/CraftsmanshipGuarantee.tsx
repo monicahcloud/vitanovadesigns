@@ -22,7 +22,9 @@ export function GuaranteeBlurb() {
 
 export function GuaranteeDetails() {
   return (
-    <section id="guarantee" className="mt-10 rounded-2xl border bg-white p-6">
+    <section
+      id="guarantee"
+      className="max-w-7xl mx-auto mt-10 rounded-2xl border bg-white p-6">
       <div className="flex items-center gap-2">
         <Shield className="h-5 w-5 text-cyan-500" />
         <h3 className="text-lg font-semibold text-slate-900">
