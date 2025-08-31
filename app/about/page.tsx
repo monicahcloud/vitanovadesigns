@@ -84,7 +84,7 @@ export default function AboutPage() {
             asChild
             className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-lg px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
             <a
-              href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+              href="https://calendly.com/vitanovadesigns/30min-1"
               target="_blank"
               rel="noopener noreferrer">
               Book a Discovery Call
@@ -251,7 +251,7 @@ export default function AboutPage() {
             asChild
             className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-lg px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
             <a
-              href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+              href="https://calendly.com/vitanovadesigns/30min-1"
               target="_blank"
               rel="noopener noreferrer">
               Book a Discovery Call

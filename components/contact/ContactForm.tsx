@@ -348,7 +348,7 @@ export default function ContactForm() {
           Prefer to book time?
         </p>
         <a
-          href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+          href="https://calendly.com/vitanovadesigns/30min-1"
           target="_blank"
           rel="noopener noreferrer"
           className="w-full sm:w-auto">

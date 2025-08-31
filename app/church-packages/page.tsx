@@ -78,7 +78,7 @@ export default function Page() {
                 size="lg"
                 className="border-purple-300 text-purple-700 hover:bg-purple-50">
                 <Link
-                  href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+                  href="https://calendly.com/vitanovadesigns/30min-1"
                   target="_blank"
                   rel="noopener noreferrer">
                   Book a Call
@@ -191,7 +191,7 @@ export default function Page() {
                 size="lg"
                 className="border-purple-300 text-purple-700 hover:bg-purple-50">
                 <Link
-                  href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+                  href="https://calendly.com/vitanovadesigns/30min-1"
                   target="_blank"
                   rel="noopener noreferrer">
                   Ask a Question

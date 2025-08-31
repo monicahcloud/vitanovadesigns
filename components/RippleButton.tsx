@@ -14,7 +14,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
   rippleColor = "rgba(255, 255, 255, 0.3)",
   onClick,
   className,
-  calendlyLink = "https://calendly.com/monicahcloud-vitanovadesigns/30min-1", // Default link
+  calendlyLink = "https://calendly.com/vitanovadesigns/30min-1", // Default link
   ...props
 }) => {
   const [ripples, setRipples] = useState<any[]>([]);

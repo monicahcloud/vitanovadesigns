@@ -117,7 +117,7 @@ function ServiceDetail({
       <Detail />
       <div className="mt-8 flex flex-wrap gap-4 justify-center items-center">
         <a
-          href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+          href="https://calendly.com/vitanovadesigns/30min-1"
           target="_blank"
           rel="noopener noreferrer">
           <Button className="bg-purple-600 hover:bg-purple-700 text-white text-xl">
@@ -189,7 +189,7 @@ export default function DesignServicesPage() {
           transition={{ delay: 0.6, duration: 0.4 }}
           className="mt-10 z-10">
           <a
-            href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
+            href="https://calendly.com/vitanovadesigns/30min-1"
             target="_blank"
             rel="noopener noreferrer">
             <Button
