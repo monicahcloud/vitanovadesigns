@@ -18,7 +18,7 @@ export default function ContactReceipt({ name }: { name: string }) {
         Thanks, {name} — we received your message ✅
       </h2>
       <p style={{ color: "#374151" }}>
-        We typically reply within 24 hours. If it’s urgent, call (770) 703-7133.
+        We typically reply within 24 hours. If it’s urgent, call (404) 703-7133.
       </p>
       <div style={{ marginTop: 18 }}>
         <a href="https://vitanovadesigns.cloud" style={cta}>

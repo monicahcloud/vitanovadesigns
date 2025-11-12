@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import * as React from "react";
 
 const BRAND = {
@@ -12,7 +12,7 @@ const SIGNATURE = {
   name: "Monicah Cloud",
   title: "Co-Founder & Lead Developer",
   company: "VitaNova Designs and Marketing LLC",
-  phone: "(770) 703-7133",
+  phone: "(404) 703-7133",
   website: "vitanovadesigns.cloud",
 };
 
@@ -51,12 +51,12 @@ export default function BrandLayout({
             textAlign: "center",
             background: `linear-gradient(135deg, ${BRAND.purple}, ${BRAND.cyan})`,
           }}>
-          <Image
+          {/* <img
             src={BRAND.logoUrl}
             width={180}
             alt="Vita Nova Designs"
             style={{ display: "block", margin: "0 auto" }}
-          />
+          /> */}
         </div>
 
         <div style={{ padding: 24 }}>{children}</div>
