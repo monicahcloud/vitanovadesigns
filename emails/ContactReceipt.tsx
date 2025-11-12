@@ -15,7 +15,7 @@ export default function ContactReceipt({ name }: { name: string }) {
   return (
     <BrandLayout preview="Thanks — we received your message">
       <h2 style={{ margin: "0 0 12px", color: "#111827" }}>
-        Thanks, {name} — we received your message ✅
+        Thanks, {name} — we received your message.
       </h2>
       <p style={{ color: "#374151" }}>
         We typically reply within 24 hours. If it’s urgent, call (404) 703-7133.
