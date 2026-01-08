@@ -29,16 +29,16 @@ const variants = {
 const teamMembers = [
   {
     name: "Monicah Cloud",
-    role: "Creative Strategist & Developer",
+    role: "AI Strategy Specialist",
     image: monicahImg,
     bio: `Monicah is a creative strategist, developer, and problem solver who thrives at the intersection of innovation and intention. She’s spent years helping brands—from bold startups to evolving nonprofits—step confidently into their next chapter.
 With experience in design, development, and business analytics, she brings a rare balance of artistic vision and analytical thinking to every project—translating complex ideas into clean, impactful digital experiences. Her work is rooted in empathy, excellence, and the belief that every brand deserves to be seen, heard, and elevated with purpose.`,
   },
   {
     name: "Cory Walton Sr.",
-    role: "Business Development & Growth Strategist",
+    role: "Operational Architect",
     image: coryImg,
-    bio: `Cory serves as our Business Development & Growth Strategist, where he helps clients turn goals into action through data-driven insight and clear direction. With a deep background in leadership, federal operations, and organizational development, Cory brings structure to complex challenges and clarity to client strategy. He supports businesses in scaling smart—from building efficient systems to aligning projects with measurable outcomes—ensuring every solution delivers value, growth, and long-term momentum.`,
+    bio: `Cory serves as our Operational Architect, where he helps clients turn goals into action through data-driven insight and clear direction. With a deep background in leadership, federal operations, and organizational development, Cory brings structure to complex challenges and clarity to client strategy. He supports businesses in scaling smart—from building efficient systems to aligning projects with measurable outcomes—ensuring every solution delivers value, growth, and long-term momentum.`,
   },
 ];
 
@@ -61,46 +61,42 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <main className="max-w-9xl mx-auto px-6 py-15 space-y-28 bg-[#0A0826] font-sans text-white">
+    <main className="max-w-9xl mx-auto px-6 py-15 space-y-20 bg-[#0A0826] font-sans text-white">
       {/* Hero Section */}
       <section className="text-center space-y-8">
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
-          Design With <span className="text-purple-500">Purpose</span>.
+          Built for <span className="text-purple-500">Speed</span>.
           <br />
-          Strategy With <span className="text-cyan-500">Vision</span>.
+          Focused on <span className="text-cyan-500">Growth</span>.
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          At <span className="text-white font-semibold">Vita Nova Designs</span>
-          , we are more than a design agency — we are a{" "}
-          <span className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-2 py-1 rounded font-bold shadow-sm">
-            full-service business solutions partner
+          In an AI-driven world, traditional agencies are too slow. At{" "}
+          <span className="text-white font-semibold">Vita Nova Designs</span>,
+          we are your
+          <span className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-2 py-1 rounded font-bold shadow-sm ml-2">
+            High-Velocity Product Partners
           </span>
-          . From branding and development to business solution and marketing, we
-          help you uncover opportunities, solve real problems, and deliver
-          lasting impact.
+          . We don&apos;t just build sites; we architect automated business
+          systems that save you time and generate revenue from day one.
         </p>
-        <div className="flex justify-center gap-4 flex-wrap">
-          <Button
-            asChild
-            className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-lg px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition">
-            <a
-              href="https://calendly.com/vitanovadesigns/30min-1"
-              target="_blank"
-              rel="noopener noreferrer">
-              Book a Discovery Call
-            </a>
-          </Button>
-
-          {/* <Button
-            variant="outline"
-            className="border-white text-white hover:bg-white/10 hover:backdrop-blur">
-            View Our Work
-          </Button> */}
-        </div>
       </section>
 
+      <section className="space-y-6 text-center">
+        <h2 className="text-4xl font-bold tracking-tight text-white">
+          From &quot;Idea&quot; to &quot;Live&quot; in Record Time
+        </h2>
+        <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-loose">
+          Technology has changed, but business needs haven&apos;t. You need
+          solutions that work, and you need them now. Our mission is to provide
+          <span className="text-purple-400 font-semibold">
+            {" "}
+            the human strategic edge{" "}
+          </span>
+          to AI-powered development—ensuring your brand isn&apos;t just
+          &quot;built,&quot; but is ready to compete at the highest level.
+        </p>
+      </section>
       <Separator />
-
       {/* Mission Section */}
       <section className="space-y-6 text-center">
         <h2 className="text-4xl font-bold tracking-tight text-white">
@@ -116,7 +112,6 @@ export default function AboutPage() {
           with their audience, and solve real business challenges.
         </p>
       </section>
-
       {/* Services Overview */}
       <section>
         <h2 className="text-4xl font-bold text-center mb-12 text-white">
@@ -158,7 +153,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-
       {/* Meet the Team Carousel */}
       <section className="space-y-10 text-center">
         <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight">
@@ -225,7 +219,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* Why Vita Nova */}
       <section className="text-center space-y-6">
         <h2 className="text-4xl font-bold text-white tracking-tight">
@@ -240,7 +233,6 @@ export default function AboutPage() {
           where you are and build what you need.
         </p>
       </section>
-
       {/* CTA Section */}
       <section className="text-center space-y-8 ">
         <h2 className="text-4xl font-bold text-white tracking-tight">

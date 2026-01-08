@@ -3,63 +3,76 @@
 import { motion } from "framer-motion";
 import { LayoutDashboard, PenTool, Fingerprint, Heart } from "lucide-react";
 
-// Feature list with icons and text
 const features = [
   {
     icon: LayoutDashboard,
-    text: "Intuitive user journeys that make navigation feel effortless",
+    title: "Intuitive Flow",
+    text: "Architecting user journeys that feel like second nature, guiding visitors exactly where they need to go.",
   },
   {
     icon: PenTool,
-    text: "Pixel-perfect layouts and design systems tailored to your brand",
+    title: "Precision Systems",
+    text: "Creating consistent, pixel-perfect design systems that grow with your brand across all digital platforms.",
   },
   {
     icon: Fingerprint,
-    text: "Interfaces crafted to feel natural, familiar, and instantly engaging",
+    title: "Behavioral Design",
+    text: "Interfaces crafted to feel familiar and instantly engaging by leveraging proven psychological patterns.",
   },
   {
     icon: Heart,
-    text: "Empathy-driven design that puts people—not pixels—first",
+    title: "Empathy-First UI",
+    text: "Designing for people, not just pixels—ensuring accessibility, trust, and emotional resonance.",
   },
 ];
 
 export default function UXUIDetail() {
   return (
-    <>
-      {/* ✨ Opening statement */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-xl leading-relaxed text-center">
-        Great design doesn’t just look good—it feels right. At VitaNova, we
-        craft user experiences that are intuitive, elegant, and emotionally
-        resonant. Every interaction is designed to build trust, reduce friction,
-        and spark delight.
-      </motion.p>
+    <div className="grid lg:grid-cols-2 gap-16 items-start">
+      {/* Left Column: The Strategic Pitch */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}>
+        <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-none tracking-tighter">
+          EXPERIENCE <br />
+          <span className="text-purple-600">DESIGN.</span>
+        </h2>
+        <p className="text-xl text-slate-500 leading-relaxed font-medium mb-10">
+          Great design doesn’t just look good—it feels right. We craft
+          experiences that reduce friction, build trust, and spark delight
+          through strategic, human-centered interaction design.
+        </p>
+        <button className="bg-slate-900 text-white rounded-full px-10 py-5 text-lg font-bold shadow-2xl hover:bg-purple-600 transition-all">
+          Optimize Your Experience
+        </button>
+      </motion.div>
 
-      {/* 💡 Feature list with icons & motion */}
-      <ul className="space-y-6">
-        {features.map(({ icon: Icon, text }, i) => (
+      {/* Right Column: Feature List */}
+      <ul className="grid gap-8">
+        {features.map((item, i) => (
           <motion.li
-            key={text}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-start gap-6 group cursor-pointer transition-all ease-in-out">
-            {/* Icon badge with gradient and pulsing effect */}
-            <span className="shrink-0 rounded-full p-5 bg-gradient-to-tr from-purple-600 to-cyan-500 text-white group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-purple-700 group-hover:to-cyan-600 transition-all transform duration-300 ease-in-out shadow-xl">
-              <Icon className="w-8 h-8" />
-            </span>
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="flex items-start gap-6 group">
+            {/* The Icon Badge */}
+            <div className="shrink-0 rounded-2xl p-4 bg-slate-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg">
+              <item.icon className="w-6 h-6" />
+            </div>
 
-            {/* Text */}
-            <span className="text-base md:text-xl mt-3 leading-relaxed text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
-              {text}
-            </span>
+            {/* Text Content */}
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 mb-1 transition-colors group-hover:text-purple-600">
+                {item.title}
+              </h4>
+              <p className="text-slate-500 text-base leading-snug">
+                {item.text}
+              </p>
+            </div>
           </motion.li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

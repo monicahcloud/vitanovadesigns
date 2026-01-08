@@ -3,63 +3,71 @@
 import { motion } from "framer-motion";
 import { Brain, Server, Code, Database } from "lucide-react";
 
-// Feature list with icons and text
 const features = [
   {
     icon: Brain,
-    text: "AI-driven automation that enhances efficiency and decision-making",
+    title: "Cognitive Automation",
+    text: "Building intelligent workflows that learn and adapt, reducing manual labor and human error.",
   },
   {
     icon: Server,
-    text: "Seamless integration of AI systems into existing infrastructure",
+    title: "Seamless Integration",
+    text: "Architecting the bridge between cutting-edge AI models and your existing business infrastructure.",
   },
   {
     icon: Code,
-    text: "Scalable and maintainable AI code for evolving business needs",
+    title: "Custom Logic Engines",
+    text: "Developing proprietary AI code that evolves with your business, ensuring long-term scalability.",
   },
   {
     icon: Database,
-    text: "Intelligent data management with AI to drive actionable insights",
+    title: "Data Intelligence",
+    text: "Turning complex data sets into actionable insights and automated decision-making tools.",
   },
 ];
 
 export default function AIDetail() {
   return (
-    <>
-      {/* ✨ Intro paragraph */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-lg leading-relaxed text-center">
-        We integrate advanced AI systems into your existing workflows, enabling
-        intelligent automation and data-driven insights. Our solutions are
-        designed to scale with your needs, providing powerful tools that evolve
-        as your business grows.
-      </motion.p>
+    <div className="grid lg:grid-cols-2 gap-16 items-start text-left">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}>
+        <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-none tracking-tighter">
+          INTELLIGENT <br />
+          <span className="text-purple-600">SYSTEMS.</span>
+        </h2>
+        <p className="text-xl text-slate-500 leading-relaxed font-medium mb-10">
+          We don&apos;t just &quot;add&quot; AI; we architect intelligent
+          ecosystems. We integrate advanced systems into your workflows to
+          enable high-velocity automation and data-driven clarity.
+        </p>
+        <button className="bg-slate-900 text-white rounded-full px-10 py-5 text-lg font-bold shadow-2xl hover:bg-purple-600 transition-all">
+          Automate Your Future
+        </button>
+      </motion.div>
 
-      {/* 🌈 Animated feature list */}
-      <ul className="space-y-6">
-        {features.map(({ icon: Icon, text }, i) => (
+      <ul className="grid gap-8">
+        {features.map((item, i) => (
           <motion.li
-            key={text}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-start gap-6 group cursor-pointer transition-all ease-in-out">
-            {/* Icon badge with gradient and pulsing effect */}
-            <span className="shrink-0 rounded-full p-5 bg-gradient-to-tr from-purple-600 to-cyan-500 text-white group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-purple-700 group-hover:to-cyan-600 transition-all transform duration-300 ease-in-out shadow-xl">
-              <Icon className="w-8 h-8" />
-            </span>
-
-            {/* Text */}
-            <span className="text-base md:text-xl mt-3 leading-relaxed text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
-              {text}
-            </span>
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="flex items-start gap-6 group">
+            <div className="shrink-0 rounded-2xl p-4 bg-slate-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <item.icon className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 mb-1 transition-colors group-hover:text-purple-600">
+                {item.title}
+              </h4>
+              <p className="text-slate-500 text-base leading-snug">
+                {item.text}
+              </p>
+            </div>
           </motion.li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

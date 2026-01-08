@@ -2,9 +2,17 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { Laptop, Smartphone, Layout, Palette, Code, Brain } from "lucide-react"; // Lucide icons
+import {
+  Laptop,
+  Smartphone,
+  Layout,
+  Palette,
+  Code,
+  Brain,
+  ArrowLeft,
+} from "lucide-react"; // Lucide icons
 
 /* ───── Detail components ───── */
 import UXUIDetail from "./UXUIDetail";
@@ -136,142 +144,105 @@ function ServiceDetail({
   );
 }
 
-/* ───── Main page ───── */
 export default function DesignServicesPage() {
   const [active, setActive] = useState<ServiceTitle | null>(null);
 
   return (
-    <div className="relative overflow-hidden w-full">
-      {/* 🎥 Hero (unchanged) */}
-      {/* <video
-        className="absolute -top-75 left-0 w-full h-full object-cover -z-20"
-        src="/herobg.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm -z-10" /> */}
+    <div className="relative w-full bg-[#f1f3f7] min-h-screen overflow-hidden">
+      {/* 🔮 Background Blobs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-200/30 blur-[120px] rounded-full -z-10" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-200/30 blur-[120px] rounded-full -z-10" />
 
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-black">
-        {/* 🔮 Animated Glow Gradient Background */}
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900 via-black to-cyan-900 animate-pulse-slow opacity-50 blur-2xl" />
-
-        {/* 🌈 Optional SVG burst pattern */}
-        <div className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-gradient-to-br from-purple-700/50 to-cyan-400/40 rounded-full blur-[120px] opacity-20 animate-spin-slower z-0" />
-
-        {/* 💡 Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+      {/* 🚀 Hero Section */}
+      <section className="relative h-[60vh] flex flex-col items-center justify-center text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          className="z-10 text-5xl md:text-7xl font-extrabold uppercase text-white leading-tight tracking-tight drop-shadow-[0_0_15px_rgba(199,210,254,0.4)]">
-          We Design <br />
-          <span className="bg-gradient-to-r from-purple-500 via-cyan-500 to-white text-transparent bg-clip-text drop-shadow-md">
-            Exceptional Digital Experiences
+          className="z-10 space-y-6">
+          <span className="px-4 py-1.5 rounded-full bg-purple-600 text-white font-bold text-xs uppercase tracking-widest shadow-lg shadow-purple-500/20">
+            VitaNova Studios
           </span>
-        </motion.h1>
-
-        {/* 📝 Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-6 text-xl md:text-2xl text-white/80 max-w-2xl font-light z-10">
-          From stunning web and mobile apps to unforgettable branding and
-          landing pages.
-        </motion.p>
-
-        {/* 🚀 CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
-          className="mt-10 z-10">
-          <a
-            href="https://calendly.com/vitanovadesigns/30min-1"
-            target="_blank"
-            rel="noopener noreferrer">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-purple-600 to-cyan-500 text-white text-xl font-bold px-8 py-4 rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
-              Schedule Your Free Discovery Call
-            </Button>
-          </a>
-        </motion.div>
-      </section>
-
-      {/* Services */}
-      <section className="py-10 px-12 w-full bg-white/95 backdrop-blur-md">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-xl z-20">
-          <h1 className="text-purple-900 text-3xl sm:text-5xl md:text-6xl font-extrabold text-center">
-            Design & Development
+          <h1 className="text-6xl md:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter">
+            WE DESIGN <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-cyan-500">
+              EXPERIENCES.
+            </span>
           </h1>
-        </div>
-
-        {/* ───── Circle Icons with Pulsing & Flowing Color ───── */}
-        {active === null && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mt-15">
-            {services.map((service, idx) => (
-              <motion.button
-                type="button"
-                key={idx}
-                onClick={() => setActive(service.title)}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-                className="text-center p-6 rounded-full bg-gradient-to-r from-purple-900 to-cyan-500 shadow-xl hover:bg-purple-700 hover:shadow-2xl focus:outline-none"
-                // style={{
-                //   animation: `pulse 8s infinite ease-in-out`, // Pulse animation
-                // }}
-              >
-                <div className="p-6 flex justify-center items-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5 }}>
-                    {service.icon}
-                  </motion.div>
-                </div>
-                <h3 className="mt-2 text-xl font-semibold text-white">
-                  {service.title}
-                </h3>
-                <p className="text-md text-white">{service.description}</p>
-              </motion.button>
-            ))}
-          </div>
-        )}
-
-        {/* ───── Detail view ───── */}
-        {active && (
-          <ServiceDetail title={active} onClose={() => setActive(null)} />
-        )}
+          <p className="text-xl md:text-2xl text-slate-500 max-w-3xl mx-auto font-medium leading-relaxed mt-4">
+            We build the engines that power modern brands. From{" "}
+            <span className="text-slate-900 font-bold">
+              high-conversion landing pages
+            </span>{" "}
+            to{" "}
+            <span className="text-slate-900 font-bold">
+              complex SaaS architectures
+            </span>
+            , we deliver digital foundations that are fast, secure, and ready
+            for revenue.
+          </p>
+        </motion.div>
       </section>
 
-      {/* CTA (unchanged) */}
-      <section className="w-full py-24 bg-gradient-to-r from-purple-700 to-cyan-600 text-white text-center px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-bold max-w-[85vw] mx-auto">
-          Ready to design something beautiful?
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-8">
-          <Link href="/contact">
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-purple-900 font-bold text-2xl border-white hover:bg-white hover:text-purple-700">
-              Get in Touch
-            </Button>
-          </Link>
-        </motion.div>
+      {/* 🛠 Interactive Services Grid */}
+      <section className="w-full px-6 pb-24">
+        <AnimatePresence mode="wait">
+          {!active ? (
+            <motion.div
+              key="grid"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="max-w-[1400px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, idx) => (
+                <motion.button
+                  key={idx}
+                  onClick={() => setActive(service.title)}
+                  whileHover={{ y: -10 }}
+                  // Darkened the base background to bg-slate-100/50 so it's visible on the light page
+                  className="group relative p-12 rounded-[3.5rem] bg-white border border-slate-200 shadow-xl hover:shadow-2xl hover:border-purple-400 transition-all text-left flex flex-col justify-between min-h-[380px]">
+                  <div className="space-y-8">
+                    {/* Icon Box Fix: Darkened the default icon color to slate-600 */}
+                    <div className="w-20 h-20 rounded-3xl bg-cyan-500 flex items-center justify-center text-slate-600 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                      {service.icon}
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-3xl font-bold text-slate-900 leading-none">
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-500 text-lg font-medium leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-purple-600 font-bold uppercase tracking-widest text-xs flex items-center gap-2 opacity-100 group-hover:translate-x-2 transition-all">
+                    View Project Lab{" "}
+                    <ArrowLeft className="rotate-180 w-4 h-4" />
+                  </div>
+                </motion.button>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="detail"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              className="max-w-[1400px] mx-auto">
+              <button
+                onClick={() => setActive(null)}
+                className="mb-10 flex items-center gap-2 text-slate-600 hover:text-purple-600 font-bold uppercase text-sm tracking-widest transition-colors">
+                <ArrowLeft className="w-5 h-5" /> Back to Expertise
+              </button>
+
+              {/* Seamless Detail Expansion */}
+              <div className="bg-white border border-slate-200 rounded-[4rem] p-12 md:p-20 shadow-2xl">
+                <ServiceDetail title={active} onClose={() => setActive(null)} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
     </div>
   );

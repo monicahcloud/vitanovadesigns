@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-// File: components/admin/AddLeadDialog.tsx
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -9,33 +8,17 @@ import {
   DialogContent,
   DialogDescription,
   DialogFooter,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Plus, Zap } from "lucide-react";
 
-export type Lead = {
-  id: string;
-  name: string;
-  org?: string | null;
-  email?: string | null;
-  website?: string | null;
-  segment?: string | null; // e.g., SMB, Nonprofit, Startup, Church
-  status: string; // NEW | CONTACTED | QUALIFIED | WON | LOST | ARCHIVED
-  createdAt: string;
-};
+/* ───── TYPES & CONSTANTS ───── */
 
-const STATUSES = [
+// Defining these here ensures TypeScript can resolve the names
+export const STATUSES = [
   "NEW",
   "CONTACTED",
   "QUALIFIED",
@@ -43,6 +26,21 @@ const STATUSES = [
   "LOST",
   "ARCHIVED",
 ] as const;
+
+export type Lead = {
+  id: string;
+  name: string;
+  org?: string | null;
+  email?: string | null;
+  website?: string | null;
+  segment?: string | null;
+  status: (typeof STATUSES)[number];
+  createdAt: string;
+  notes?: string | null;
+  priority?: number | null;
+};
+
+/* ───── COMPONENT ───── */
 
 export function AddLeadDialog({ onAdded }: { onAdded?: (lead: Lead) => void }) {
   const [open, setOpen] = useState(false);
@@ -60,47 +58,45 @@ export function AddLeadDialog({ onAdded }: { onAdded?: (lead: Lead) => void }) {
     priority: "" as string | number,
   });
 
+  const resetForm = () => {
+    setForm({
+      name: "",
+      org: "",
+      email: "",
+      website: "",
+      segment: "",
+      status: "NEW",
+      notes: "",
+      priority: "",
+    });
+    setError(null);
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError(null);
-    if (!form.name.trim()) {
-      setError("Name is required");
-      return;
-    }
+    if (!form.name.trim()) return setError("Name is required");
+
     try {
       setIsSubmitting(true);
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          ...form,
           name: form.name.trim(),
-          org: form.org || null,
-          email: form.email || null,
-          website: form.website || null,
-          segment: form.segment || null,
-          status: form.status,
-          notes: form.notes || null,
           priority: form.priority ? Number(form.priority) : null,
         }),
       });
-      if (!res.ok) {
-        if (res.status === 401)
-          throw new Error("Unauthorized — sign in at /admin/login first");
-        throw new Error(`Failed to create lead (HTTP ${res.status})`);
-      }
+
+      if (!res.ok)
+        throw new Error(
+          res.status === 401 ? "Unauthorized" : "Failed to save lead"
+        );
+
       const created: Lead = await res.json();
       onAdded?.(created);
       setOpen(false);
-      setForm({
-        name: "",
-        org: "",
-        email: "",
-        website: "",
-        segment: "",
-        status: "NEW",
-        notes: "",
-        priority: "",
-      });
+      resetForm();
     } catch (err: any) {
       setError(err?.message || "Something went wrong");
     } finally {
@@ -109,127 +105,84 @@ export function AddLeadDialog({ onAdded }: { onAdded?: (lead: Lead) => void }) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(val) => {
+        setOpen(val);
+        if (!val) resetForm();
+      }}>
       <DialogTrigger asChild>
-        <Button size="sm">Add Lead</Button>
+        <Button className="bg-purple-600 hover:bg-purple-700 text-white rounded-full px-6 shadow-lg shadow-purple-500/20 gap-2">
+          <Plus size={18} />
+          Add Lead
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[520px]">
-        <DialogHeader>
-          <DialogTitle>New Lead</DialogTitle>
-          <DialogDescription>
-            Save a potential client. Only you can create leads (requires admin
-            login).
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="grid gap-4 py-2">
-          <div className="grid gap-1">
-            <Label htmlFor="name">Name *</Label>
-            <Input
-              id="name"
-              value={form.name}
-              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-              required
-            />
+
+      <DialogContent className="sm:max-w-[550px] rounded-[2rem] border-none shadow-2xl p-0 overflow-hidden bg-white">
+        {/* Decorative Header */}
+        <div className="bg-slate-900 p-8 text-white relative overflow-hidden">
+          <div className="relative z-10">
+            <DialogTitle className="text-2xl font-black uppercase tracking-tight flex items-center gap-2">
+              <Zap className="text-cyan-400 fill-cyan-400" size={20} />
+              New Lead Entry
+            </DialogTitle>
+            <DialogDescription className="text-slate-400 mt-1">
+              Architecture for a new partnership. Admin-only access.
+            </DialogDescription>
           </div>
-          <div className="grid gap-1">
-            <Label htmlFor="org">Organization</Label>
-            <Input
-              id="org"
-              value={form.org}
-              onChange={(e) => setForm((f) => ({ ...f, org: e.target.value }))}
-            />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="grid gap-1">
-              <Label htmlFor="email">Email</Label>
+          <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-purple-600/20 rounded-full blur-3xl" />
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          <div className="grid grid-cols-2 gap-6">
+            <div className="col-span-2 space-y-1.5">
+              <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                Client Name *
+              </Label>
               <Input
-                id="email"
-                type="email"
-                value={form.email}
+                className="rounded-xl bg-slate-50 border-slate-200 focus:bg-white"
+                value={form.name}
                 onChange={(e) =>
-                  setForm((f) => ({ ...f, email: e.target.value }))
+                  setForm((f) => ({ ...f, name: e.target.value }))
+                }
+                required
+              />
+            </div>
+
+            {/* Added Organization field back to match your previous layout */}
+            <div className="col-span-2 space-y-1.5">
+              <Label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">
+                Organization
+              </Label>
+              <Input
+                className="rounded-xl bg-slate-50 border-slate-200 focus:bg-white"
+                value={form.org}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, org: e.target.value }))
                 }
               />
             </div>
-            <div className="grid gap-1">
-              <Label htmlFor="website">Website</Label>
-              <Input
-                id="website"
-                value={form.website}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, website: e.target.value }))
-                }
-                placeholder="https://"
-              />
-            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="grid gap-1">
-              <Label htmlFor="segment">Segment</Label>
-              <Input
-                id="segment"
-                value={form.segment}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, segment: e.target.value }))
-                }
-                placeholder="SMB / Nonprofit / Startup"
-              />
+
+          {error && (
+            <div className="p-3 rounded-xl bg-red-50 text-red-600 text-xs font-bold border border-red-100 uppercase tracking-tighter">
+              [ ERROR: {error} ]
             </div>
-            <div className="grid gap-1">
-              <Label>Status</Label>
-              <Select
-                value={form.status}
-                onValueChange={(v) =>
-                  setForm((f) => ({ ...f, status: v as any }))
-                }>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent>
-                  {STATUSES.map((s) => (
-                    <SelectItem key={s} value={s}>
-                      {s}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid gap-1">
-              <Label htmlFor="priority">Priority</Label>
-              <Input
-                id="priority"
-                type="number"
-                inputMode="numeric"
-                value={form.priority}
-                onChange={(e) =>
-                  setForm((f) => ({ ...f, priority: e.target.value }))
-                }
-                placeholder="1-5"
-              />
-            </div>
-          </div>
-          <div className="grid gap-1">
-            <Label htmlFor="notes">Notes</Label>
-            <Textarea
-              id="notes"
-              rows={3}
-              value={form.notes}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, notes: e.target.value }))
-              }
-            />
-          </div>
-          {error && <p className="text-sm text-rose-600">{error}</p>}
-          <DialogFooter className="mt-2">
+          )}
+
+          <DialogFooter className="pt-4 gap-3">
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               onClick={() => setOpen(false)}
-              disabled={isSubmitting}>
-              Cancel
+              className="rounded-full text-slate-400 hover:text-slate-900">
+              Discard
             </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving…" : "Save Lead"}
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-slate-900 text-white hover:bg-purple-600 rounded-full px-8 shadow-xl transition-all">
+              {isSubmitting ? "Syncing..." : "Commit Lead"}
             </Button>
           </DialogFooter>
         </form>
@@ -237,7 +190,3 @@ export function AddLeadDialog({ onAdded }: { onAdded?: (lead: Lead) => void }) {
     </Dialog>
   );
 }
-
-// ------------------
-// Usage example inside your Leads tab
-// File: app/admin/_parts/LeadsSection.tsx (or inline in /admin/page.tsx)

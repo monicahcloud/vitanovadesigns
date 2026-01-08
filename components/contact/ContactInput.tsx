@@ -9,7 +9,8 @@ type Props = {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
-  autoComplete: string;
+  autoComplete?: string;
+  className?: string;
 };
 
 const ContactInput = ({
@@ -18,19 +19,26 @@ const ContactInput = ({
   value,
   onChange,
   type = "text",
+  autoComplete,
+  className = "", // Default to empty string
 }: Props) => (
-  <div>
-    <label htmlFor={name} className="block text-sm font-medium mb-1">
+  <div className={`flex flex-col gap-1.5 ${className}`}>
+    <label
+      htmlFor={name}
+      className="text-xs font-bold text-slate-400 uppercase tracking-[0.15em] ml-1">
       {label}
     </label>
+
     <motion.input
-      whileFocus={{ scale: 1.02 }}
+      whileFocus={{ scale: 1.01 }}
       type={type}
       name={name}
+      id={name}
       value={value}
       onChange={onChange}
+      autoComplete={autoComplete}
       required
-      className="w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-400 text-slate-900 bg-white"
+      className="w-full px-5 py-4 rounded-2xl border border-slate-200 bg-slate-50 text-slate-900 outline-none transition-all focus:bg-white focus:border-purple-400 focus:ring-4 focus:ring-purple-500/5 shadow-sm"
     />
   </div>
 );

@@ -8,27 +8,27 @@ import { BarChart4, Briefcase, BrainCircuit, Settings } from "lucide-react";
 
 const businessServices = [
   {
-    title: "KPI Dashboards",
+    title: "The CEO Dashboard",
     description:
-      "Track real-time metrics that matter with custom-built dashboards tailored to your business goals.",
+      "Stop guessing. We build visual boards that show your exact profit, customer growth, and business health in real-time.",
     icon: <BarChart4 className="text-white w-12 h-12" />,
   },
   {
-    title: "Business Intelligence",
+    title: "Smart Automations",
     description:
-      "Transform your data into actionable insights with AI-powered analytics and reporting systems.",
+      "We replace your repetitive manual tasks with AI 'robots.' Save hours every week on scheduling, emails, and data entry.",
     icon: <BrainCircuit className="text-white w-12 h-12" />,
   },
   {
-    title: "Consulting & Strategy",
+    title: "Scale Strategy",
     description:
-      "Expert guidance to optimize operations, uncover opportunities, and position your business for scalable growth.",
+      "We look at your current systems and find the friction. We provide a roadmap to double your output without doubling your team.",
     icon: <Briefcase className="text-white w-12 h-12" />,
   },
   {
-    title: "Systems & Automation",
+    title: "Connected Ecosystems",
     description:
-      "Streamline your workflows and boost efficiency through smart automations and connected systems.",
+      "We make your software talk to each other. Your CRM, Website, and Marketing will finally work as one unified machine.",
     icon: <Settings className="text-white w-12 h-12" />,
   },
 ];

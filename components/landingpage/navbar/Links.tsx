@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import MegaMenu from "@/components/MegaMenu";
 import design from "../../../app/assets/images/design2.png";
 import develop from "../../../app/assets/images/develop2.png";
 import marketing from "../../../app/assets/images/develop2.png";
+
 export const links = [
   { name: "About", href: "/about" },
   {
@@ -15,11 +18,10 @@ export const links = [
         href: "/services/design",
         description: [
           "AI System Integration & Automation",
-          "UI/UX",
-          "Web",
-          "Mobile App Design",
+          "UI/UX Architecture",
+          "Web & Mobile Design",
           "Landing Page Design",
-          "Branding",
+          "Brand Identity",
         ],
         icon: design,
       },
@@ -27,11 +29,11 @@ export const links = [
         name: "Development",
         href: "/services/development",
         description: [
-          "Web Development",
-          "Software Development",
-          "CMS Development",
-          "Webflow Development",
-          "MVP Development",
+          "Custom Web Applications",
+          "Software Engineering",
+          "CMS Architecture",
+          "MVP Rapid Prototyping",
+          "Webflow Solutions",
         ],
         icon: develop,
       },
@@ -39,10 +41,10 @@ export const links = [
         name: "Marketing/UX",
         href: "/services/marketing",
         description: [
-          "Content Marketing",
-          "Pitch Deck Design",
-          "SEO",
-          "Content & CRO",
+          "Growth Marketing Strategy",
+          "SEO & Conversion (CRO)",
+          "Authority Pitch Decks",
+          "Content Architecture",
         ],
         icon: marketing,
       },
@@ -53,16 +55,22 @@ export const links = [
 
 function Links() {
   return (
-    <nav className="flex gap-6">
+    <nav className="hidden lg:flex items-center gap-10">
       {links.map((link) =>
         link.hasSubMenu ? (
-          <MegaMenu key={link.name} title={link.name} subMenu={link.subMenu} />
+          <div key={link.name} className="relative group">
+            <MegaMenu title={link.name} subMenu={link.subMenu} />
+            {/* Underline decorative element for active/hover state */}
+            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-600 to-cyan-500 transition-all duration-300 group-hover:w-full" />
+          </div>
         ) : (
           <Link
             key={link.name}
             href={link.href}
-            className="text-3xl hover:text-purple-900">
+            className="relative group text-sm font-bold uppercase tracking-[0.2em] text-slate-600 hover:text-slate-900 transition-colors">
             {link.name}
+            {/* Animated Underline */}
+            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-600 to-cyan-500 transition-all duration-300 group-hover:w-full" />
           </Link>
         )
       )}

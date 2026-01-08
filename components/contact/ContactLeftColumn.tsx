@@ -1,67 +1,84 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+"use client";
+
+import { Phone, Mail, Globe } from "lucide-react";
 
 export default function ContactLeftColumn() {
   return (
-    <div className="relative w-full h-full overflow-hidden  p-6 md:p-6 text-white flex flex-col justify-between gap-18">
-      {/* Floating SVG Blob Background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <svg
-          className="absolute top-[-20%] left-[-20%] w-[140%] h-[140%] opacity-20 animate-spin-slow"
-          viewBox="0 0 200 200"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill="#3b82f6"
-            d="M49.8,-67.2C62.3,-57.7,69.4,-41.6,71.3,-26C73.2,-10.5,69.9,4.7,63.4,19.2C56.9,33.7,47.2,47.6,34.6,56.9C21.9,66.2,5.9,70.8,-9.5,73C-24.8,75.2,-39.5,75.1,-51.5,67.4C-63.4,59.8,-72.7,44.6,-76.6,28.3C-80.6,12,-79.1,-5.4,-72.8,-22.5C-66.4,-39.6,-55.2,-56.5,-40.2,-65.7C-25.2,-74.9,-6.3,-76.4,10.5,-76.4C27.3,-76.5,54.7,-75.6,49.8,-67.2Z"
-            transform="translate(100 100)"
-          />
-        </svg>
-      </div>
+    <div className="relative w-full h-full p-2 text-white flex flex-col justify-between min-h-[500px]">
+      {/* 1. Brand & Strategic Headline */}
+      <div className="space-y-6">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full" />
+          <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-cyan-300">
+            Establish_Connection
+          </span>
+        </div>
 
-      {/* Headline + Subtext */}
-      <div className="z-10 space-y-4 max-w-md">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
-          Let&apos;s Grow Your Brand Together.
-        </h1>
-        <p className="text-white/80 text-center text-base md:text-lg">
-          Whether you have a question, opportunity, or just want to say hi —
-          we&apos;re all ears. Drop us a message and we&apos;ll respond shortly.
+        <h2 className="text-4xl md:text-5xl font-black leading-[1.1] tracking-tighter uppercase">
+          Build the <br />
+          <span className="text-cyan-400">Foundation.</span>
+        </h2>
+
+        <p className="text-purple-100/70 text-lg leading-relaxed max-w-sm">
+          Ready to turn your idea into a powerhouse product? Reach out to our
+          team to plan your next SaaS platform or high-performance website.
         </p>
       </div>
 
-      {/* <div className="z-10 flex justify-center items-center">
-        <div className="logo-wrapper">
-          <div className="logo-ring" />
-          <div className="logo-inner">
-            <Logo />
+      {/* 2. System Info & Contact (Unified Block - No Borders) */}
+      <div className="space-y-8  ">
+        {/* Location Row */}
+        <div className="flex items-center gap-4 group mt-5">
+          <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
+            <Globe size={18} />
+          </div>
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-widest text-purple-300">
+              Location
+            </p>
+            <p className="text-sm font-bold uppercase">Remote Global</p>
           </div>
         </div>
-      </div> */}
 
-      {/* Contact Info */}
-      <div className="z-10  text-white/90 text-md sm:text-base">
-        <div className="flex items-start gap-3">
-          <Phone className="mt-1" />
-          <a
-            href="tel:+14047707133"
-            className="text-purple-300 underline hover:opacity-80 transition">
-            (404) 703-7133
-          </a>
-        </div>
+        {/* Contact Links Row */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4 group">
+            <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+              <Phone size={18} />
+            </div>
+            <div>
+              <p className="text-[10px] font-mono uppercase tracking-widest text-purple-300">
+                Direct_Line
+              </p>
+              <a
+                href="tel:+14047707133"
+                className="text-lg font-bold hover:text-cyan-300 transition-colors">
+                (404) 703-7133
+              </a>
+            </div>
+          </div>
 
-        <div className="flex items-start gap-3 break-words">
-          <Mail className="mt-1" />
-          <a
-            href="mailto:monicahcloud@vitanovadesigns.cloud"
-            className="break-all  underline hover:opacity-80 text-sm text-purple-300 transition">
-            monicahcloud@vitanovadesigns.cloud
-          </a>
-        </div>
-
-        <div className="flex items-start gap-3">
-          <MapPin className="mt-1" />{" "}
-          <span className="text-purple-300">Atlanta, GA</span>
+          <div className="flex items-center gap-4 group">
+            <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
+              <Mail size={18} />
+            </div>
+            <div>
+              <p className="text-[10px] font-mono uppercase tracking-widest text-purple-300">
+                Secure_Email
+              </p>
+              <a
+                href="mailto:monicahcloud@vitanovadesigns.cloud"
+                className="text-sm md:text-base font-bold hover:text-purple-300 transition-colors break-all">
+                monicahcloud@vitanovadesigns.cloud
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Background Glows */}
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-cyan-500/20 rounded-full blur-[100px] -z-10" />
+      <div className="absolute -top-20 -right-20 w-80 h-80 bg-purple-600/20 rounded-full blur-[100px] -z-10" />
     </div>
   );
 }

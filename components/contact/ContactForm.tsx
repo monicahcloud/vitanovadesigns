@@ -1,19 +1,26 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import ContactInput from "./ContactInput";
 import ContactTextArea from "./ContactTextArea";
-import ContactHeader from "./ContactHeader";
+import { ArrowUpRight } from "lucide-react"; // Ensure this is imported
 import Turnstile from "react-turnstile";
 
 type FormState = {
   name: string;
   email: string;
   phone: string;
-  projectType: "website" | "branding" | "church" | "education" | "bi" | "other";
+  projectType:
+    | "website"
+    | "branding"
+    | "church"
+    | "education"
+    | "bi"
+    | "other"
+    | "marketing";
   budget: "" | "<1500" | "1500-3000" | "3000-5000" | "5000-10000" | ">10000";
   message: string;
   consent: boolean;
@@ -31,9 +38,8 @@ export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [tsToken, setTsToken] = useState("");
-  const [tsError, setTsError] = useState<string | null>(null);
   const [showCaptcha, setShowCaptcha] = useState(false);
-  const captchaRef = useRef<HTMLDivElement>(null);
+  // const captchaRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState<FormState>({
     name: "",
@@ -66,42 +72,26 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors({}); // reset
+    setErrors({});
 
-    if (formData.company) return; // honeypot
+    if (formData.company) return;
 
-    // quick client-side validations
     const msg = formData.message?.trim() ?? "";
     const newErrors: FieldErrors = {};
     if (!formData.name) newErrors.name = "Name is required.";
     if (!formData.email) newErrors.email = "Email is required.";
     if (!formData.budget) newErrors.budget = "Please select a budget range.";
     if (msg.length < 10)
-      newErrors.message =
-        "Please provide at least 10 characters so we can help.";
+      newErrors.message = "Please provide at least 10 characters.";
 
     if (Object.keys(newErrors).length) {
       setErrors(newErrors);
-      toast(
-        <div>
-          <p className="font-semibold text-red-600">Fix and resend</p>
-          <p className="text-sm">{Object.values(newErrors)[0]}</p>
-        </div>
-      );
+      toast.error("Please fix errors and resend.");
       return;
     }
 
-    // If Turnstile is configured but not yet verified, reveal it neatly near the button
     if (hasSiteKey && !tsToken) {
       setShowCaptcha(true);
-      setTimeout(
-        () =>
-          captchaRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          }),
-        0
-      );
       return;
     }
 
@@ -113,47 +103,9 @@ export default function ContactForm() {
         body: JSON.stringify({ ...formData, turnstileToken: tsToken }),
       });
 
-      if (!res.ok) {
-        let serverMsg = "Invalid form data.";
-        try {
-          const data = await res.json();
-          const fieldErrors = data?.details?.fieldErrors || {};
-          const mapped: FieldErrors = {
-            name: fieldErrors.name?.[0],
-            email: fieldErrors.email?.[0],
-            budget: fieldErrors.budget?.[0],
-            message: fieldErrors.message?.[0],
-          };
-          setErrors(mapped);
-          serverMsg =
-            mapped.message ||
-            mapped.email ||
-            mapped.budget ||
-            mapped.name ||
-            data?.error ||
-            serverMsg;
-        } catch {}
-        toast(
-          <div>
-            <p className="font-semibold text-red-600">
-              Please check your entries
-            </p>
-            <p className="text-sm">{serverMsg}</p>
-          </div>
-        );
-        return;
-      }
+      if (!res.ok) throw new Error("Submission failed");
 
-      toast(
-        <div>
-          <p className="font-semibold text-green-800">Success!</p>
-          <p className="text-sm text-muted-foreground">
-            Your message has been sent.
-          </p>
-        </div>
-      );
-
-      // reset form + token (forces user to verify again for next submit)
+      toast.success("Project Brief Sent Successfully!");
       setFormData({
         name: "",
         email: "",
@@ -165,19 +117,9 @@ export default function ContactForm() {
         company: "",
       });
       setTsToken("");
-      setTsError(null);
       setShowCaptcha(false);
-      setErrors({});
-    } catch (err) {
-      console.error("Contact submit error:", err);
-      toast(
-        <div>
-          <p className="font-semibold text-red-600">Unexpected Error</p>
-          <p className="text-sm">
-            Please try again or email monicahcloud@vitanovadesigns.cloud.
-          </p>
-        </div>
-      );
+    } catch {
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -189,48 +131,45 @@ export default function ContactForm() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2, duration: 0.8 }}
-      className="w-full bg-white/10 backdrop-blur-md text-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl space-y-6 border border-white/20">
-      <ContactHeader />
-
+      className="w-full bg-white text-slate-900 space-y-8">
       {/* Name + Email */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-        <div className="flex-1">
-          <ContactInput
-            label="Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            autoComplete="name"
-          />
-        </div>
-        <div className="flex-1">
-          <ContactInput
-            label="Email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            autoComplete="email"
-          />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <ContactInput
+          label="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          autoComplete="name"
+          className="text-xs font-bold text-slate-400 uppercase tracking-widest"
+        />
+        <ContactInput
+          label="Email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          autoComplete="email"
+          className="text-xs font-bold text-slate-400 uppercase tracking-widest"
+        />
       </div>
 
       {/* Phone + Budget */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-        <div className="flex-1">
-          <ContactInput
-            label="Phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            autoComplete="tel"
-          />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <ContactInput
+          label="Phone"
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleChange}
+          autoComplete="tel"
+          className="text-xs font-bold text-slate-400 uppercase tracking-widest"
+        />
 
-        <div className="flex-1">
-          <label htmlFor="budget" className="block text-sm font-medium mb-1">
-            Budget
+        <div className="flex flex-col gap-1.5">
+          <label
+            htmlFor="budget"
+            className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+            Estimated Budget
           </label>
           <select
             id="budget"
@@ -238,7 +177,7 @@ export default function ContactForm() {
             value={formData.budget}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded-lg border text-slate-900 bg-white">
+            className="w-full px-4 py-4 rounded-2xl border border-slate-200 bg-slate-50 text-slate-900 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/5 transition-all outline-none appearance-none cursor-pointer">
             <option value="">Select a range</option>
             <option value="<1500">&lt; $1,500</option>
             <option value="1500-3000">$1,500–$3,000</option>
@@ -250,8 +189,10 @@ export default function ContactForm() {
       </div>
 
       {/* Project Type */}
-      <div>
-        <label htmlFor="projectType" className="block text-sm font-medium mb-1">
+      <div className="flex flex-col gap-1.5">
+        <label
+          htmlFor="projectType"
+          className="text-xs font-bold text-slate-400 uppercase tracking-widest">
           Project Type
         </label>
         <select
@@ -259,102 +200,80 @@ export default function ContactForm() {
           name="projectType"
           value={formData.projectType}
           onChange={handleChange}
-          className="w-full px-4 py-2 rounded-lg border text-slate-900 bg-white">
-          <option value="website">Website</option>
-          <option value="branding">Branding</option>
-          <option value="church">Church Website</option>
-          <option value="education">School/Training</option>
-          <option value="bi">BI/Dashboard</option>
-          <option value="other">Other</option>
+          className="w-full px-4 py-4 rounded-2xl border border-slate-200 bg-slate-50 text-slate-900 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/5 transition-all outline-none appearance-none cursor-pointer">
+          <option value="website">Website Design and Development</option>
+          <option value="branding">Branding & Identity</option>
+          <option value="marketing">Growth Marketing</option>
+          <option value="bi">SaaS / BI Dashboard</option>
+          <option value="other">Other Engineering</option>
         </select>
       </div>
 
       {/* Message */}
-      <ContactTextArea
-        label="About your project..."
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        error={errors.message}
-        minLength={10}
-      />
+      <div className="space-y-1">
+        <ContactTextArea
+          label="Tell us about your project goals..."
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          error={errors.message}
+          className="text-xs font-bold text-slate-400 uppercase tracking-widest"
+        />
+      </div>
 
-      {/* Consent + honeypot */}
-      <div className="flex items-start gap-3">
+      {/* Consent */}
+      <div className="flex items-center gap-3 py-2">
         <input
           id="consent"
           name="consent"
           type="checkbox"
           checked={formData.consent}
           onChange={handleChange}
-          className="mt-1"
+          className="w-5 h-5 rounded border-slate-300 text-purple-600 focus:ring-purple-500 cursor-pointer"
           required
         />
-        <label htmlFor="consent" className="text-sm text-purple-100">
+        <label htmlFor="consent" className="text-sm text-slate-500 font-medium">
           I consent to be contacted. We typically reply within 24 hours.
         </label>
       </div>
-      <input
-        type="text"
-        name="company"
-        value={formData.company}
-        onChange={handleChange}
-        className="hidden"
-        aria-hidden="true"
-        tabIndex={-1}
-      />
 
-      {/* Subtle captcha row (hidden until needed) */}
+      {/* Turnstile */}
       {hasSiteKey && showCaptcha && (
-        <div ref={captchaRef} className="mt-2 flex justify-end">
-          <div className=" items-center gap-3 rounded-xl bg-white/5 border border-white/10 p-2">
-            <div className="text-xs text-purple-200">Quick verification</div>
-            <Turnstile
-              sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              theme="auto"
-              size="normal"
-              onVerify={(token) => {
-                setTsToken(token);
-                setTsError(null);
-              }}
-              onExpire={() => setTsToken("")}
-              onError={() => {
-                setTsToken("");
-                setTsError(
-                  "Verification failed. If this is localhost, ensure your Turnstile site allows it."
-                );
-                console.error("Turnstile onError");
-              }}
-            />
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex justify-start">
+          <Turnstile
+            sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+            theme="light"
+            onVerify={(token) => setTsToken(token)}
+          />
+        </motion.div>
       )}
-      {tsError && <p className="text-xs text-red-300 text-right">{tsError}</p>}
 
       {/* Submit */}
-      <div className="flex">
+      <div className="pt-4">
         <Button
           type="submit"
-          disabled={submitting} // we gate captcha in handleSubmit instead of disabling here
-          aria-label="Send message to Vita Nova Designs"
-          className="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-white px-4 py-3 text-base rounded-lg transition-all duration-300 shadow-md">
-          {submitting ? "Sending..." : "Send Message"}
+          disabled={submitting}
+          className="w-full bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-bold py-8 rounded-full shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 hover:scale-[1.01] transition-all text-xl flex items-center justify-center gap-2 border-none">
+          {submitting ? "Initiating..." : "Send Project Brief"}
+          {!submitting && <ArrowUpRight className="w-6 h-6" />}
         </Button>
       </div>
 
-      {/* Bottom CTA */}
-      <div className="text-center pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
-        <p className="text-md text-purple-200 whitespace-nowrap">
-          Prefer to book time?
+      {/* CTA Section */}
+      <div className="mt-12 pt-10 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-6">
+        <p className="text-slate-500 font-medium">
+          Prefer a direct conversation?
         </p>
         <a
           href="https://calendly.com/vitanovadesigns/30min-1"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto">
-          <button className="w-full sm:w-auto px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md transition-all duration-300">
-            Book a Free 15-min Call
-          </button>
+          className="group flex items-center gap-2 text-purple-600 font-bold hover:text-cyan-500 transition-colors">
+          Book a Discovery Call
+          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </a>
       </div>
     </motion.form>

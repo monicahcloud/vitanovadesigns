@@ -3,57 +3,67 @@ import Services from "./services/Services";
 import design from "../app/assets/images/design2.png";
 import develop from "../app/assets/images/develop2.png";
 import marketing from "../app/assets/images/marketing.png";
+import ProcessSection from "@/components/ProcessSection";
+import SaaSSection from "@/components/SaaSSection";
 
 export default function HomePage() {
   return (
-    <>
-      <main className="min-h-screen bg-gradient-to-br from-purple-700 to-blue-500  text-white">
-        <Hero />
+    // Changed bg to a deeper dark theme to let the Hero and Cards pop
+    <main className="min-h-screen bg-[#0A0826] text-white">
+      {/* 1. Hero Section remains at the top */}
+      <Hero />
 
-        {/* MegaMenu as standalone services block */}
-        <div className="relative z-20 flex justify-center mt-[-80px]">
-          <Services
-            title="Our Services"
-            subMenu={[
-              {
-                name: "Design/Development",
-                href: "/services/design",
-                description: [
-                  "AI System Integration & Automation",
-                  "User Interface & User Experience Design (UI/UX)",
-                  "Website and Mobile Application Design",
-                  "Content Management Systems (CMS)",
-                  "Landing Page Design & Optimization",
-                ],
-                icon: develop,
-              },
-              {
-                name: "Marketing/Branding",
-                href: "/services/marketing",
-                description: [
-                  "Search Engine Optimization (SEO) & Conversion Strategy",
-                  "Customer Journey Research & Mapping",
-                  "Brand Messaging & Communication",
-                  "Content Marketing",
-                  "Visual Presentations",
-                ],
-                icon: marketing,
-              },
-              {
-                name: "Business Solutions",
-                href: "/services/business",
-                description: [
-                  "Key Performance Indicator (KPI) Development & Tracking",
-                  "Business Intelligence (BI) Reporting & Insights",
-                  "Consulting & Strategy",
-                  "Systems & Automation",
-                ],
-                icon: design,
-              },
-            ]}
-          />
-        </div>
-      </main>
-    </>
+      {/* 2. Services Section: Using a negative margin to overlap the hero slightly */}
+      <section className="relative z-20 px-4 md:px-0 mt-[-100px]">
+        <Services
+          title="How We Help You Grow"
+          subMenu={[
+            {
+              name: "Digital Products",
+              href: "/services/design",
+              description: [
+                "AI-Powered Automations",
+                "Web & Mobile Apps",
+                "High-Conversion Websites",
+                "User-Friendly Experience Design",
+                "Instant-Launch Landing Pages",
+              ],
+              icon: develop,
+            },
+            {
+              name: "Brand & Marketing",
+              href: "/services/marketing",
+              description: [
+                "Search Engine Mastery (SEO)",
+                "Customer Growth Strategy",
+                "Brand Messaging & Story",
+                "Authority Content Marketing",
+                "Premium Visual Presentations",
+              ],
+              icon: marketing,
+            },
+            {
+              name: "Business Strategy",
+              href: "/services/business",
+              description: [
+                "Real-Time Profit Dashboards",
+                "AI Business Intelligence",
+                "Growth & Scale Consulting",
+                "Operational Workflows",
+              ],
+              icon: design,
+            },
+          ]}
+        />
+      </section>
+
+      {/* 3. Process Section: Moved outside the flex container so it takes full width */}
+      <section className="py-10">
+        <ProcessSection />
+      </section>
+      <section className="">
+        <SaaSSection />
+      </section>
+    </main>
   );
 }

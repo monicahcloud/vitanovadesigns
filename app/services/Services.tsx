@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
 import RippleButton from "@/components/RippleButton";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 export type SubMenuItem = {
   name: string;
@@ -24,7 +25,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0 },
 };
 
@@ -35,102 +36,111 @@ type ServicesProps = {
 
 const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
   return (
-    <>
-      {/* MegaMenu Grid */}
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={containerVariants}
-        className="relative w-full bg-white shadow-2xl border-t-4 border-purple-500 z-10 px-4 sm:px-6 md:px-8 py-16 sm:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
-        {/* Title */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-xl z-20">
-          <h1 className="text-purple-900 text-3xl sm:text-5xl md:text-6xl font-extrabold text-center">
+    <section className="relative w-full py-16 md:py-20 bg-[#fcfaff] overflow-hidden">
+      {/* Soft Glows */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-100/30 blur-[120px] rounded-full -z-10" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-100/30 blur-[120px] rounded-full -z-10" />
+
+      {/* Expanded Max-Width for a "Wider" feel */}
+      <div className="max-w-[1550px] mx-auto px-6">
+        {/* Header Area */}
+        <div className="mb-14 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-3 mb-4">
+            <div className="h-[2px] w-8 bg-purple-600 rounded-full" />
+            <span className="text-purple-600 font-bold uppercase tracking-[0.2em] text-[15px]">
+              Expertise & Solutions
+            </span>
+          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-black text-[#0F172A] tracking-tighter leading-none">
             {title}
-          </h1>
+          </h2>
         </div>
 
-        {/* Promo CTA Card */}
-        <motion.div variants={itemVariants}>
-          <Card className="bg-gradient-to-br from-purple-700 via-purple-800 to-indigo-900 text-white flex flex-col justify-between items-center min-h-[260px] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-purple-400/20">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="flex flex-col items-center text-center gap-4 cursor-pointer">
-              {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight bg-gradient-to-r from-white via-purple-300 to-white text-transparent bg-clip-text drop-shadow-sm">
-                Your Project, <br /> Your Price
-              </h2>
-
-              {/* Subtext */}
-              <p className="text-sm sm:text-base md:text-lg text-purple-100 italic px-2 max-w-md">
-                Flexible solutions, powerful results. <br />
-                Let’s shape your vision — on your terms.
-              </p>
-
-              {/* CTA */}
-              <RippleButton
-                rippleColor="rgba(168, 85, 247, 0.4)"
-                className="relative mt-3 bg-white text-purple-800 font-bold py-2 px-4 sm:px-6 rounded-2xl hover:bg-purple-200 transition-all shadow-md text-sm md:text-base">
-                <span className="relative z-10">
-                  Book a free 15-min strategy call
-                </span>
-                <span className="absolute inset-0 rounded-2xl animate-pulse bg-purple-300 opacity-10" />
-              </RippleButton>
-            </motion.div>
-
-            {/* Decorative Icon */}
-            <motion.div
-              animate={{ rotate: [0, 15, -15, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 16,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-4 right-4 opacity-20 text-[6rem] sm:text-[9rem] pointer-events-none select-none">
-              ✨
-            </motion.div>
-          </Card>
-        </motion.div>
-
-        {/* SubMenu Cards */}
-        {subMenu.map((item) => (
-          <motion.div
-            key={item.name}
-            variants={itemVariants}
-            whileHover={{
-              rotateX: 5,
-              rotateY: -5,
-              scale: 1.03,
-              boxShadow: "0 0 20px rgba(168, 85, 247, 0.5)",
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ transformStyle: "preserve-3d", perspective: 1000 }}
-            className="rounded-3xl bg-white overflow-hidden cursor-pointer">
-            <Link href={item.href} className="block h-full">
-              <div className="flex flex-col gap-4 p-5 sm:p-6 h-full relative z-10">
-                <Image
-                  src={item.icon}
-                  alt={item.name}
-                  width={80}
-                  height={40}
-                  className="object-cover rounded"
-                />
-                <div className="text-xl sm:text-2xl font-bold text-gray-900">
-                  {item.name}
+        {/* The Grid: Slightly larger gaps to emphasize width */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7">
+          {/* ⚡ Promo Card */}
+          <motion.div variants={itemVariants}>
+            <Card className="h-full bg-[#0F172A] text-white flex flex-col justify-between rounded-[2.5rem] p-9 md:p-11 shadow-2xl border-none relative overflow-hidden min-h-[420px]">
+              <div className="relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[9px] font-bold text-cyan-300 uppercase tracking-widest">
+                  <Sparkles className="w-3 h-3" /> Flexible Pricing
                 </div>
-                <hr />
-                <ul className="list-none pl-0 text-sm sm:text-base text-purple-900 font-semibold space-y-1">
-                  {item.description.map((desc, index) => (
-                    <li key={index}>{desc}</li>
-                  ))}
-                </ul>
+                <h2 className="text-4xl font-black leading-tight tracking-tight">
+                  Your Project, <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+                    Your Price.
+                  </span>
+                </h2>
+                <p className="text-sm md:text-base text-slate-400 font-medium leading-relaxed">
+                  Tailored digital solutions built to fit your unique business
+                  goals.
+                </p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 z-0" />
-            </Link>
+
+              <div className="relative z-10 w-full pt-6">
+                <RippleButton
+                  rippleColor="rgba(168, 85, 247, 0.4)"
+                  className="w-full bg-white text-[#0F172A] font-bold py-4 rounded-xl hover:bg-purple-50 transition-all flex items-center justify-center gap-2 text-base shadow-xl">
+                  <span>Book Strategy Call</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </RippleButton>
+              </div>
+            </Card>
           </motion.div>
-        ))}
-      </motion.div>
-    </>
+
+          {/* 🛠 Service Cards */}
+          {subMenu.map((item) => (
+            <motion.div key={item.name} variants={itemVariants}>
+              <Link href={item.href} className="block h-full group">
+                <Card className="h-full rounded-[2.5rem] bg-white border border-slate-100 p-9 md:p-11 shadow-sm hover:shadow-2xl hover:border-purple-200 transition-all duration-500 flex flex-col min-h-[420px] relative overflow-hidden">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:bg-purple-50 transition-all duration-500 mb-8">
+                    <Image
+                      src={item.icon}
+                      alt={item.name}
+                      width={32}
+                      height={32}
+                      className="object-contain opacity-80 group-hover:opacity-100 transition-all"
+                    />
+                  </div>
+
+                  <div className="mb-6">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#0F172A] group-hover:text-purple-600 transition-colors mb-1">
+                      {item.name}
+                    </h3>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">
+                      Capabilities
+                    </p>
+                  </div>
+
+                  <ul className="space-y-3.5 flex-grow">
+                    {item.description.map((desc, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start gap-3 text-sm md:text-[15px] text-slate-600 font-medium leading-tight">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0" />
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-8 pt-6 border-t border-slate-50 flex items-center text-[10px] font-black text-purple-600 uppercase tracking-widest group-hover:gap-3 gap-2 transition-all">
+                    Explore Details <ArrowUpRight className="w-3 h-3" />
+                  </div>
+                </Card>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

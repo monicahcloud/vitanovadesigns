@@ -3,63 +3,71 @@
 import { motion } from "framer-motion";
 import { Smartphone, Code, Database, Cloud } from "lucide-react";
 
-// Feature list with icons and text
 const features = [
   {
     icon: Smartphone,
-    text: "High-performance mobile apps designed to deliver seamless user experiences",
+    title: "High-Performance Mobile",
+    text: "Bespoke applications designed for fluid user experiences and native-level speed on all devices.",
   },
   {
     icon: Code,
-    text: "Clean, scalable code built with maintainability and flexibility in mind",
+    title: "Engineering Excellence",
+    text: "Clean, maintainable codebases built from scratch to ensure your software is a permanent asset.",
   },
   {
     icon: Database,
-    text: "Robust database management for storing and managing large amounts of data",
+    title: "Robust Data Structures",
+    text: "Sophisticated database management capable of handling complex user data and high-traffic loads.",
   },
   {
     icon: Cloud,
-    text: "Cloud integration for flexible, scalable, and real-time app capabilities",
+    title: "Cloud Infrastructure",
+    text: "Modern cloud-native deployment that ensures your application is flexible, secure, and always on.",
   },
 ];
 
 export default function AppDevDetail() {
   return (
-    <>
-      {/* ✨ Intro paragraph */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-lg leading-relaxed text-center">
-        We create mobile applications that combine functionality, performance,
-        and an intuitive user interface. Our apps are built to perform
-        seamlessly, scale efficiently, and deliver impactful experiences for
-        your users.
-      </motion.p>
+    <div className="grid lg:grid-cols-2 gap-16 items-start text-left">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}>
+        <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-none tracking-tighter">
+          PRODUCT <br />
+          <span className="text-purple-600">ENGINEERING.</span>
+        </h2>
+        <p className="text-xl text-slate-500 leading-relaxed font-medium mb-10">
+          We build custom software products that combine deep functionality with
+          intuitive interfaces. From MVP to enterprise scale, we engineer
+          solutions that deliver lasting business value.
+        </p>
+        <button className="bg-slate-900 text-white rounded-full px-10 py-5 text-lg font-bold shadow-2xl hover:bg-purple-600 transition-all">
+          Build Your Product
+        </button>
+      </motion.div>
 
-      {/* 🌈 Animated feature list */}
-      <ul className="space-y-6">
-        {features.map(({ icon: Icon, text }, i) => (
+      <ul className="grid gap-8">
+        {features.map((item, i) => (
           <motion.li
-            key={text}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-start gap-6 group cursor-pointer transition-all ease-in-out">
-            {/* Icon badge with gradient and pulsing effect */}
-            <span className="shrink-0 rounded-full p-5 bg-gradient-to-tr from-purple-600 to-cyan-500 text-white group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-purple-700 group-hover:to-cyan-600 transition-all transform duration-300 ease-in-out shadow-xl">
-              <Icon className="w-8 h-8" />
-            </span>
-
-            {/* Text */}
-            <span className="text-base md:text-xl mt-3 leading-relaxed text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
-              {text}
-            </span>
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="flex items-start gap-6 group">
+            <div className="shrink-0 rounded-2xl p-4 bg-slate-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 shadow-sm">
+              <item.icon className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 mb-1 transition-colors group-hover:text-purple-600">
+                {item.title}
+              </h4>
+              <p className="text-slate-500 text-base leading-snug">
+                {item.text}
+              </p>
+            </div>
           </motion.li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

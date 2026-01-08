@@ -1,64 +1,73 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Laptop, Code, Cloud, Database } from "lucide-react";
+import { Laptop, Code, Cloud, ShieldCheck } from "lucide-react";
 
-// Feature list with icons and text
 const features = [
   {
     icon: Laptop,
-    text: "Responsive, mobile-first designs with performance in mind",
+    title: "Performance First",
+    text: "Lightning-fast load times that optimize for SEO and user retention.",
   },
   {
     icon: Code,
-    text: "Scalable, maintainable, and well-documented code",
+    title: "Clean Architecture",
+    text: "Custom-coded foundations that are maintainable, scalable, and built to last.",
   },
   {
     icon: Cloud,
-    text: "Seamless cloud integration for optimized performance",
+    title: "Ecosystem Integration",
+    text: "Connecting your digital presence with your existing CRMs and business tools.",
   },
   {
-    icon: Database,
-    text: "Data-driven solutions that scale with your business",
+    icon: ShieldCheck,
+    title: "Bespoke Security",
+    text: "Hardened server-side logic and encryption to protect your business data.",
   },
 ];
 
 export default function WebDetail() {
   return (
-    <>
-      {/* ✨ Opening statement */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mb-6 text-base md:text-xl leading-relaxed text-center">
-        At VitaNova, we create web solutions that are fast, reliable, and
-        scalable. Our development process is centered around your goals,
-        ensuring we deliver a product that drives results.
-      </motion.p>
+    <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}>
+        <h2 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-none tracking-tighter">
+          DIGITAL <br />
+          <span className="text-purple-600">FOUNDATIONS.</span>
+        </h2>
+        <p className="text-xl text-slate-500 leading-relaxed font-medium mb-10">
+          We don&apos;t just build sites; we architect digital engines. From
+          custom SaaS platforms to high-end corporate presence, our builds are
+          engineered for stability and growth.
+        </p>
+        <button className="bg-slate-900 text-white rounded-full px-10 py-5 text-lg font-bold shadow-2xl hover:bg-purple-600 transition-all">
+          Build Your Foundation
+        </button>
+      </motion.div>
 
-      {/* 💡 Feature list with icons & motion */}
-      <ul className="space-y-6">
-        {features.map(({ icon: Icon, text }, i) => (
+      <ul className="grid gap-8">
+        {features.map((item, i) => (
           <motion.li
-            key={text}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="flex items-start gap-6 group cursor-pointer transition-all ease-in-out">
-            {/* Icon badge with gradient and pulsing effect */}
-            <span className="shrink-0 rounded-full p-5 bg-gradient-to-tr from-purple-600 to-cyan-500 text-white group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-purple-700 group-hover:to-cyan-600 transition-all transform duration-300 ease-in-out shadow-xl">
-              <Icon className="w-8 h-8" />
-            </span>
-
-            {/* Text */}
-            <span className="text-base md:text-xl mt-3 leading-relaxed text-gray-800 group-hover:text-purple-700 transition-colors duration-300">
-              {text}
-            </span>
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            className="flex items-start gap-6 group">
+            <div className="shrink-0 rounded-2xl p-4 bg-slate-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+              <item.icon className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 mb-1">
+                {item.title}
+              </h4>
+              <p className="text-slate-500 text-base leading-snug">
+                {item.text}
+              </p>
+            </div>
           </motion.li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

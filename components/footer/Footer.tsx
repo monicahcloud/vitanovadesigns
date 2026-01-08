@@ -10,121 +10,127 @@ const Footer = () => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
-      className="bg-[#0A0826] text-white relative z-50 border-t border-purple-800">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
-        {/* Column 1 - Logo & CTA */}
-        <div className="text-center md:text-left flex flex-col items-center md:items-start">
-          <Link href="/">
-            <h2 className="text-4xl font-extrabold bg-gradient-to-t from-indigo-900 via-purple-700 to-purple-500 bg-clip-text text-transparent">
+      viewport={{ once: true, amount: 0.1 }}
+      className="bg-[#050414] text-white relative z-50 border-t border-white/10">
+      {/* Expanded width to match the Services grid (1400px) */}
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+        {/* Column 1 - Brand Identity (Restored Logo Styling) */}
+        <div className="flex flex-col items-center md:items-start space-y-6">
+          <Link href="/" className="group">
+            <h2 className="text-4xl font-extrabold bg-gradient-to-t from-indigo-900 via-purple-700 to-purple-500 bg-clip-text text-transparent transition-transform group-hover:scale-105">
               VitaNova
             </h2>
           </Link>
-          <p className="mt-4 text-gray-400 max-w-xs">
-            We meet you where you are and build what you need.
+          <p className="text-gray-400 text-sm leading-relaxed max-w-[260px] text-center md:text-left">
+            Elite digital architecture and business strategy for the AI era. We
+            build the future, faster.
           </p>
           <Button
             asChild
-            className="mt-6 bg-purple-700 hover:bg-purple-800 text-sm w-fit">
-            <Link href="/contact">Get in Touch →</Link>
+            className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-500 hover:to-indigo-500 rounded-full px-8 py-6 shadow-lg shadow-purple-500/20 transition-all border-none">
+            <Link href="/contact" className="font-bold text-lg">
+              Start a Project →
+            </Link>
           </Button>
         </div>
 
-        {/* Column 2 - Services */}
+        {/* Column 2 - Core Solutions */}
         <div className="text-center md:text-left">
-          <h4 className="text-xl font-bold mb-4 uppercase">Services</h4>
-          <ul className="space-y-2 text-gray-300">
+          <h4 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em] mb-6">
+            Expertise
+          </h4>
+          <ul className="space-y-4 text-gray-300 font-medium">
             <li>
               <Link
                 href="/services/design"
-                className="hover:text-purple-400 transition-colors">
-                Design & Development
+                className="hover:text-cyan-400 transition-colors">
+                Product Build
               </Link>
             </li>
             <li>
               <Link
                 href="/services/marketing"
-                className="hover:text-purple-400 transition-colors">
-                Marketing & Branding
+                className="hover:text-cyan-400 transition-colors">
+                Growth Strategy
               </Link>
             </li>
             <li>
               <Link
                 href="/services/business"
-                className="hover:text-purple-400 transition-colors">
-                Business Solutions
+                className="hover:text-cyan-400 transition-colors">
+                AI Automations
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Column 3 - Company */}
+        {/* Column 3 - Special Packages */}
         <div className="text-center md:text-left">
-          <h4 className="text-xl font-bold mb-4 uppercase">Company</h4>
-          <ul className="space-y-2 text-gray-300">
-            <li>
-              <Link
-                href="/about"
-                className="hover:text-purple-400 transition-colors">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                className="hover:text-purple-400 transition-colors">
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="hover:text-purple-400 transition-colors">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 4 - Resources */}
-        <div className="text-center md:text-left flex flex-col items-center md:items-start">
-          <h4 className="text-xl font-bold mb-4 uppercase">Packages</h4>
-          <ul className="space-y-2 text-gray-300">
+          <h4 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em] mb-6">
+            Partnerships
+          </h4>
+          <ul className="space-y-4 text-gray-300 font-medium">
             <li>
               <Link
                 href="/church-packages"
                 className="hover:text-purple-400 transition-colors">
-                Church Packages
+                Church Solutions
               </Link>
             </li>
             <li>
               <Link
                 href="/small-business-package"
                 className="hover:text-purple-400 transition-colors">
-                Small Business Packages
-              </Link>
-            </li>
-            {/* <li>
-              <Link
-                href="/case-studies"
-                className="hover:text-purple-400 transition-colors">
-                Case Studies
+                SME Accelerator
               </Link>
             </li>
             <li>
               <Link
-                href="/faq"
+                href="/about"
                 className="hover:text-purple-400 transition-colors">
-                FAQs
+                Our Story
               </Link>
-            </li> */}
+            </li>
           </ul>
+        </div>
+
+        {/* Column 4 - The Lab (Social Proof) */}
+        <div className="text-center md:text-left">
+          <h4 className="text-sm font-bold text-gray-500 uppercase tracking-[0.2em] mb-6">
+            VitaNova Labs
+          </h4>
+          <div className="p-5 rounded-3xl bg-white/5 border border-white/10 group hover:border-purple-500/50 transition-colors">
+            <p className="text-[10px] text-purple-400 font-bold mb-2 uppercase tracking-[0.2em]">
+              Featured Build
+            </p>
+            <Link
+              href="https://maxresumebuilder.com"
+              target="_blank"
+              className="text-sm font-bold text-white block hover:underline">
+              MaxResumeBuilder.com
+            </Link>
+            <div className="text-[10px] text-purple-400 font-bold uppercase tracking-widest pt-2">
+              Featured Case Study: Software Excellence
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Bottom */}
-      <div className="border-t border-purple-800 mt-8 py-6 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} VitaNova Designs. All rights reserved.
+      {/* Bottom Copyright Area */}
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 border-t border-white/5 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="text-gray-500 text-[13px] font-medium">
+          © {new Date().getFullYear()} VitaNova Designs & Marketing. All rights
+          reserved.
+        </div>
+
+        <div className="flex gap-8 text-[13px] font-medium text-gray-500">
+          <Link href="/privacy" className="hover:text-white transition-colors">
+            Privacy
+          </Link>
+          <Link href="/terms" className="hover:text-white transition-colors">
+            Terms
+          </Link>
+        </div>
       </div>
     </motion.footer>
   );
