@@ -41,7 +41,7 @@ const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
         initial="hidden"
         animate="show"
         variants={containerVariants}
-        className="relative w-full bg-white shadow-2xl border-t-4 border-purple-500 z-10 px-4 sm:px-6 md:px-8 py-16 sm:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+        className="relative w-full bg-white shadow-2xl border-t-4 border-purple-500 z-10 px-4 sm:px-6 md:px-8 py-16 sm:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-25">
         {/* Title */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-xl z-20">
           <h1 className="text-purple-900 text-3xl sm:text-5xl md:text-6xl font-extrabold text-center">
@@ -68,13 +68,8 @@ const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
               </p>
 
               {/* CTA */}
-              <RippleButton
-                rippleColor="rgba(168, 85, 247, 0.4)"
-                className="relative mt-3 bg-white text-purple-800 font-bold py-2 px-4 sm:px-6 rounded-2xl hover:bg-purple-200 transition-all shadow-md text-sm md:text-base">
-                <span className="relative z-10">
-                  Book a free 15-min strategy call
-                </span>
-                <span className="absolute inset-0 rounded-2xl animate-pulse bg-purple-300 opacity-10" />
+              <RippleButton calendlyLink="https://calendly.com/monicahcloud-vitanovadesigns/30min-1">
+                Book a free 15-min strategy call
               </RippleButton>
             </motion.div>
 

@@ -1,0 +1,141 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+// Prisma + Neon (Postgres)
+// Ensure DATABASE_URL includes sslmode=require
+
+
+generator client {
+provider = "prisma-client-js"
+}
+
+
+datasource db {
+provider = "postgresql"
+url = env("DATABASE_URL")
+}
+
+enum LeadStatus {
+NEW
+CONTACTED
+INTERESTED
+CONVERTED
+NOT_INTERESTED  
+QUALIFIED 
+WON 
+LOST 
+ARCHIVED
+}
+
+enum ScopeTier {
+BASIC
+STANDARD
+PREMIUM
+CUSTOM
+}
+enum ProposalStatus {
+DRAFT
+SENT
+ACCEPTED
+REJECTED
+EXPIRED
+CANCELLED
+ON_HOLD
+} 
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lead {
+id String @id @default(cuid())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+name String
+org String?
+email String?
+website String?
+segment String? // e.g., SMB, Nonprofit, Startup, Church
+status LeadStatus @default(NEW)
+lastContacted DateTime?
+notes String?
+priority Int?
+}
+
+
+model Proposal {
+id String @id @default(cuid())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+clientName String
+scope ScopeTier
+priceMin Int?
+priceMax Int?
+status ProposalStatus @default(DRAFT)
+docUrl String?
+followUpDate DateTime?
+}
+
+model ContentItem {
+id String @id @default(cuid())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+title String
+type ContentType
+status ContentStatus @default(DRAFT)
+keyword String?
+dueDate DateTime?
+}
+enum ContentStatus {
+  IDEATE 
+  DRAFT 
+  REVIEW 
+  PUBLISHED
+}
+enum ContentType {
+  BLOG 
+  PAGE 
+  SOCIAL 
+  EMAIL 
+  OTHER
+}
+
+
+model Faq {
+id String @id @default(cuid())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+question String
+answer String
+tags String[]
+lastUpdated DateTime @default(now())
+}
+
+model Meeting {
+  id          String        @id @default(cuid())
+  createdAt   DateTime      @default(now())
+  scheduledAt DateTime
+  email       String?
+  name        String?
+  source      String        @default("calendly")
+  status      MeetingStatus @default(BOOKED)
+  externalId  String?       @unique    // e.g., event UUID
+  eventUri    String?       @unique    // e.g., https://api.calendly.com/scheduled_events/EVT_xxx
+  raw         Json?
+
+  @@index([status, scheduledAt])
+  @@index([scheduledAt])
+}
+enum MeetingStatus {
+  BOOKED
+  CANCELED
+  COMPLETED
+}

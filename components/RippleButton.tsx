@@ -21,7 +21,7 @@ const RippleButton: React.FC<RippleButtonProps> = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const createRipple = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     const button = buttonRef.current;
     if (!button) return;

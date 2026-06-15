@@ -16,13 +16,23 @@ const Footer = () => {
         {/* Column 1 - Logo & CTA */}
         <div className="text-center md:text-left flex flex-col items-center md:items-start">
           <Link href="/">
-            <h2 className="text-4xl font-extrabold bg-gradient-to-t from-indigo-900 via-purple-700 to-purple-500 bg-clip-text text-transparent">
+            <h2
+              className="
+text-4xl
+font-extrabold
+bg-gradient-to-r
+from-fuchsia-400
+via-blue-400
+to-cyan-300
+bg-clip-text
+text-transparent
+">
               VitaNova
             </h2>
           </Link>
           <p className="mt-4 text-gray-400 max-w-xs">
-            Empowering brands through vibrant design, development, and
-            marketing.
+            Transforming businesses through AI solutions, data intelligence,
+            automation, and digital innovation.
           </p>
           <Button
             asChild
@@ -87,29 +97,40 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 4 - Resources */}
-        <div className="text-center md:text-left flex flex-col items-center md:items-start">
-          <h4 className="text-xl font-bold mb-4 uppercase">Resources</h4>
+        {/* Column 4 - Solutions */}
+        <div className="text-center md:text-left">
+          <h4 className="text-xl font-bold mb-4 uppercase">Solutions</h4>
+
           <ul className="space-y-2 text-gray-300">
             <li>
               <Link
-                href="/blog"
-                className="hover:text-purple-400 transition-colors">
-                Blog & Tips
+                href="/services"
+                className="hover:text-cyan-400 transition-colors">
+                AI Solutions
               </Link>
             </li>
+
             <li>
               <Link
-                href="/case-studies"
-                className="hover:text-purple-400 transition-colors">
-                Case Studies
+                href="/services"
+                className="hover:text-cyan-400 transition-colors">
+                Data Intelligence
               </Link>
             </li>
+
             <li>
               <Link
-                href="/faqs"
-                className="hover:text-purple-400 transition-colors">
-                FAQs
+                href="/services"
+                className="hover:text-cyan-400 transition-colors">
+                Business Automation
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/services"
+                className="hover:text-cyan-400 transition-colors">
+                Digital Transformation
               </Link>
             </li>
           </ul>

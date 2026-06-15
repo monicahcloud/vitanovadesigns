@@ -19,7 +19,7 @@ const ContactForm = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -45,7 +45,7 @@ const ContactForm = () => {
             <p className="text-sm text-muted-foreground">
               Your message has been sent.
             </p>
-          </div>
+          </div>,
         );
 
         setFormData({
@@ -62,7 +62,7 @@ const ContactForm = () => {
             <p className="text-sm text-muted-foreground">
               {data.error || "Failed to send your message."}
             </p>
-          </div>
+          </div>,
         );
       }
     } catch (err) {
@@ -73,7 +73,7 @@ const ContactForm = () => {
           <p className="text-sm text-muted-foreground">
             Something went wrong. Please try again.
           </p>
-        </div>
+        </div>,
       );
     }
   };
@@ -144,17 +144,17 @@ const ContactForm = () => {
         </Button>
       </div>
 
-      <div className="text-center pt-6 flex justify-between items-center">
+      {/* <div className="text-center pt-6 flex justify-between items-center">
         <p className="text-md text-purple-200">Prefer to book time?</p>
         <a
           href="https://calendly.com/monicahcloud-vitanovadesigns/30min-1"
           target="_blank"
           rel="noopener noreferrer">
-          <RippleButton className="mt-3 w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl shadow-md transition-all duration-300">
-            Book a Free 15-min Call
+          <RippleButton calendlyLink="https://calendly.com/monicahcloud-vitanovadesigns/30min-1">
+            Book a free 15-min strategy call
           </RippleButton>
         </a>
-      </div>
+      </div> */}
     </motion.form>
   );
 };
