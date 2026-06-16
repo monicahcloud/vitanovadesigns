@@ -32,7 +32,7 @@ export default function UXUIDetail() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="mb-6 text-base md:text-lg leading-relaxed">
-        Great design doesn’t just look good—it feels right. At VitaNova, we
+        Great design doesn&apos;t just look good—it feels right. At VitaNova, we
         craft user experiences that are intuitive, elegant, and emotionally
         resonant. Every interaction is designed to build trust, reduce friction,
         and spark delight.

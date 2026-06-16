@@ -32,10 +32,10 @@ export default function LandingDetail() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="mb-6 text-base md:text-lg leading-relaxed">
-        A great landing page doesn’t just look good — it sells. At VitaNova, we
-        create high-converting pages that turn browsers into buyers. With
-        crystal-clear messaging, striking visuals, and smart design choices,
-        your visitors won't just scroll — they'll click.
+        A great landing page doesn&apos;t just look good — it sells. At
+        VitaNova, we create high-converting pages that turn browsers into
+        buyers. With crystal-clear messaging, striking visuals, and smart design
+        choices, your visitors won&apos;t just scroll — they&apos;ll click.
       </motion.p>
 
       {/* 🎯 Feature list with icons and animation */}

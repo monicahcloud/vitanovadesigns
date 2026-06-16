@@ -34,8 +34,8 @@ export default function MobileDetail() {
         className="mb-6 text-base md:text-lg leading-relaxed">
         Your mobile experience should be just as stunning and seamless as your
         desktop one— maybe even better. At VitaNova, we design mobile interfaces
-        that feel smooth, familiar, and built for action. It's more than
-        mobile-friendly—it's mobile-first magic.
+        that feel smooth, familiar, and built for action. It&apos;s more than
+        mobile-friendly—it&apos;s mobile-first magic.
       </motion.p>
 
       {/* 📱 Feature list with icon animation */}

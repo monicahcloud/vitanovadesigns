@@ -49,7 +49,7 @@ export default function AboutPage() {
   const paginate = (newDirection: number) => {
     setDirection(newDirection);
     setCurrent(
-      (prev) => (prev + newDirection + teamMembers.length) % teamMembers.length
+      (prev) => (prev + newDirection + teamMembers.length) % teamMembers.length,
     );
   };
 
@@ -197,7 +197,7 @@ export default function AboutPage() {
           Why Vita Nova?
         </h2>
         <blockquote className="text-xl italic text-purple-400 max-w-2xl mx-auto">
-          “Vita Nova” means "New Life" — and that’s what we build into every
+          “Vita Nova” means New Life — and that&apos;s what we build into every
           brand.
         </blockquote>
         <p className="text-lg text-gray-200 max-w-xl mx-auto leading-relaxed">
@@ -210,7 +210,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="text-center space-y-8 ">
         <h2 className="text-4xl font-bold text-white tracking-tight">
-          Let’s Create Something Bold Together
+          Let&apos;s Create Something Bold Together
         </h2>
         <div className="flex justify-center gap-4 flex-wrap">
           <Button

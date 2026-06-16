@@ -64,7 +64,7 @@ const Services: React.FC<ServicesProps> = ({ title, subMenu }) => {
               {/* Subtext */}
               <p className="text-sm sm:text-base md:text-lg text-purple-100 italic px-2 max-w-md">
                 Flexible solutions, powerful results. <br />
-                Let’s shape your vision — on your terms.
+                Let&apos;s shape your vision — on your terms.
               </p>
 
               {/* CTA */}

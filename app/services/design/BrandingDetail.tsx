@@ -32,9 +32,9 @@ export default function BrandingDetail() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="mb-6 text-base md:text-lg leading-relaxed">
-        Your brand is more than a logo — it’s how people feel when they see,
-        hear, or interact with you. At VitaNova, we build brand identities that
-        are emotionally resonant, visually iconic, and ready to scale with
+        Your brand is more than a logo — it&apos;s how people feel when they
+        see, hear, or interact with you. At VitaNova, we build brand identities
+        that are emotionally resonant, visually iconic, and ready to scale with
         purpose and personality.
       </motion.p>
 
